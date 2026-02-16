@@ -45,9 +45,9 @@ export default function Navbar() {
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed w-full z-50 bg-[#09637E] backdrop-blur-sm shadow-md border-b-2 border-gold/20"
+      className="fixed top-0 left-0 w-full z-50 bg-[#09637E] backdrop-blur-sm shadow-md border-b-2 border-gold/20"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full px-10 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-17">
           {/* Logo Section */}
           <Link href="/" className="flex items-center space-x-2 group">

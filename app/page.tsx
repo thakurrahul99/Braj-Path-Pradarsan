@@ -43,7 +43,6 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-50">
       <Navbar />
       <Hero />
-
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-saffron font-semibold tracking-wider uppercase text-sm">

@@ -49,6 +49,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased bg-cream text-gray-900 font-sans`}
       >
+        <main className="pt-17"></main>
         {children}
       </body>
     </html>
