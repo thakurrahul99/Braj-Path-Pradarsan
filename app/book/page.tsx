@@ -60,7 +60,7 @@ Please confirm availability. Jai Shri Krishna! 🙏`;
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white rounded-2xl shadow-xl overflow-hidden"
                 >
-                    <div className="bg-gradient-to-r from-saffron to-gold p-8 text-center">
+                    <div className="bg-linear-to-r from-saffron to-gold p-8 text-center">
                         <h1 className="text-3xl font-serif font-bold text-deep-blue">Book Your Spiritual Journey</h1>
                         <p className="text-white/90 mt-2">Fill in the details below and we will contact you shortly.</p>
                     </div>

@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Caveat, Rubik } from "next/font/google";
 import "./globals.css";
+import { Great_Vibes } from "next/font/google";
+
+const cursiveFont = Great_Vibes({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-cursive", // CSS variable banayein
+});
+
+
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -25,7 +34,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "Braj Path Pradarsan - Spiritual Journey to Vrindavan",
+  title: "Braj Path Pradarshak - Spiritual Journey to Vrindavan",
   description:
     "Book your spiritual tour packages for Vrindavan, Mathura, and Barsana. Experience the land of Lord Krishna.",
 };
@@ -38,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} antialiased bg-cream text-gray-900 font-sans`}
+        className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased bg-cream text-gray-900 font-sans`}
       >
         {children}
       </body>

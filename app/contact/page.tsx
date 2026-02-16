@@ -50,7 +50,7 @@ Jai Shri Krishna! 🙏`;
       <Navbar />
 
       {/* --- Header Section --- */}
-      <section className="relative h-64 flex items-center justify-center text-white overflow-hidden mt-16">
+      <section className="relative h-64 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1621210185317-099434863768?auto=format&fit=crop&q=80&w=1600"
@@ -263,7 +263,7 @@ Jai Shri Krishna! 🙏`;
         ></iframe>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

@@ -14,8 +14,8 @@ export default function Home() {
       duration: "2 Days / 1 Night",
       price: 2500,
       locations: ["Vrindavan", "Raman Reti"],
-      image:
-        "https://images.unsplash.com/photo-1569163139394-de4798aa62b3?w=500&h=300&fit=crop",
+      // image:
+        // "https://images.unsplash.com/photo-1569163139394-de4798aa62b3?w=500&h=300&fit=crop",
     },
     {
       title: "Mathura & Barsana Yatra",
@@ -24,8 +24,8 @@ export default function Home() {
       duration: "1 Day",
       price: 1500,
       locations: ["Mathura", "Barsana", "Gokul"],
-      image:
-        "https://images.unsplash.com/photo-1548599821-8f94e9b34795?w=500&h=300&fit=crop",
+      // image:
+        // "https://images.unsplash.com/photo-1548599821-8f94e9b34795?w=500&h=300&fit=crop",
     },
     {
       title: "Complete Braj Yatra",
@@ -34,8 +34,8 @@ export default function Home() {
       duration: "3 Days / 2 Nights",
       price: 4500,
       locations: ["Mathura", "Vrindavan", "Govardhan", "Barsana", "Nandgaon"],
-      image:
-        "https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94?w=500&h=300&fit=crop",
+      // image:
+        // "https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94?w=500&h=300&fit=crop",
     },
   ];
 

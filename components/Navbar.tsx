@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react"; // useEffect add kiya
 import Link from "next/link";
-import { Menu, X, Flower } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -14,22 +14,51 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Navbar show/hide state
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Scroll Tracking Logic
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        // Agar mobile menu open hai to navbar hide mat karo
+        if (isOpen) return;
+
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+          // Niche scroll karne par hide
+          setIsVisible(false);
+        } else {
+          // Upar scroll karne par show
+          setIsVisible(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY, isOpen]);
 
   return (
-    <nav className="fixed w-full z-50 bg-[#09637E] backdrop-blur-sm shadow-md border-b-2 border-gold/20">
+    <motion.nav
+      // Framer Motion for smooth slide animation
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed w-full z-50 bg-[#09637E] backdrop-blur-sm shadow-md border-b-2 border-gold/20"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-17">
+          {/* Logo Section */}
           <Link href="/" className="flex items-center space-x-2 group">
-            {/* <Flower className="h-8 w-8 text-white group-hover:text-gold transition-colors duration-300" /> */}
             <img
               src="/logo.png"
               alt="Braj Path Logo"
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="text-2xl font-rubik font-bold text-blue-500 tracking-wide group-hover:text-deep-blue transition-colors duration-300">
-              Braj Path Pradasan
-            </span>
+            <h1 className="font-[family-name:var(--font-cursive)] text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
+              Braj Path Pradarshak
+            </h1>
           </Link>
 
           {/* Desktop Navigation */}
@@ -101,6 +130,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

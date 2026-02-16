@@ -29,7 +29,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/gallery" className="text-gray-300 hover:text-saffron transition-colors">
+                                <Link href="/gallary" className="text-gray-300 hover:text-saffron transition-colors">
                                     Photo Gallery
                                 </Link>
                             </li>
