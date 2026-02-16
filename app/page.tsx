@@ -1,65 +1,108 @@
-import Image from "next/image";
+"use client";
+
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Footer from "../components/Footer";
+import PackageCard from "../components/PackageCard";
 
 export default function Home() {
+  const featuredPackages = [
+    {
+      title: "Vrindavan Parikrama",
+      description:
+        "Complete spiritual tour of Vrindavan including Banke Bihari, ISKCON, Prem Mandir, and Nidhivan.",
+      duration: "2 Days / 1 Night",
+      price: 2500,
+      locations: ["Vrindavan", "Raman Reti"],
+      image:
+        "https://images.unsplash.com/photo-1569163139394-de4798aa62b3?w=500&h=300&fit=crop",
+    },
+    {
+      title: "Mathura & Barsana Yatra",
+      description:
+        "Visit the birthplace of Lord Krishna in Mathura and Radha Rani's palace in Barsana.",
+      duration: "1 Day",
+      price: 1500,
+      locations: ["Mathura", "Barsana", "Gokul"],
+      image:
+        "https://images.unsplash.com/photo-1548599821-8f94e9b34795?w=500&h=300&fit=crop",
+    },
+    {
+      title: "Complete Braj Yatra",
+      description:
+        "An immersive 3-day journey covering all major leela sthalis of Braj Bhoomi.",
+      duration: "3 Days / 2 Nights",
+      price: 4500,
+      locations: ["Mathura", "Vrindavan", "Govardhan", "Barsana", "Nandgaon"],
+      image:
+        "https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94?w=500&h=300&fit=crop",
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-neutral-50">
+      <Navbar />
+      <Hero />
+
+      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-saffron font-semibold tracking-wider uppercase text-sm">
+            Spiritual Journeys
+          </span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-deep-blue mt-2 mb-4">
+            Our Popular Packages
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Choose from our carefully curated pilgrimage packages designed to
+            give you the most authentic spiritual experience.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredPackages.map((pkg, index) => (
+            <PackageCard key={index} {...pkg} />
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Testimonials or Info Section could go here */}
+      <section className="bg-cream py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-serif font-bold text-peacock mb-6">
+            Why Choose Braj Path Pradarsan?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-lg font-bold text-saffron mb-2">
+                Expert Guides
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Locally experienced guides who know the stories and secrets of
+                every temple.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-lg font-bold text-saffron mb-2">
+                Comfortable Travel
+              </h3>
+              <p className="text-gray-600 text-sm">
+                AC coaches and sanitized vehicles for a hassle-free journey.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-lg font-bold text-saffron mb-2">
+                Satvik Meals
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Pure vegetarian prasadam arrangements included in premium
+                packages.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
   );
 }
