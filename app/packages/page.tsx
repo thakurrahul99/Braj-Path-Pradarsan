@@ -13,6 +13,7 @@ export default function PackagesPage() {
             duration: "2 Days / 1 Night",
             price: 2500,
             locations: ["Vrindavan", "Raman Reti"],
+            image: "/vrindavan.jpg",
         },
         {
             title: "Mathura Janmabhoomi",
@@ -27,6 +28,7 @@ export default function PackagesPage() {
             duration: "1 Day",
             price: 1500,
             locations: ["Barsana", "Nandgaon"],
+            image: "/Barsana.jpg",
         },
         {
             title: "Govardhan Parikrama",
