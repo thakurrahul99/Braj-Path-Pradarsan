@@ -41,13 +41,41 @@ const AboutUsPage = () => {
       desc: "Home to the majestic Shriji Temple and the world-famous Lathmar Holi, celebrating the eternal love of Radha-Krishna.",
       icon: <Compass className="text-teal-600" />,
     },
+    {
+      title: "Gokul",
+      subtitle: "The Childhood Abode",
+      spec: "Raman Reti & Nand Bhawan",
+      desc: "The sacred village where Lord Krishna spent his infancy. Experience the divine serenity of Raman Reti, where the Lord played in the sands, and visit the historic Chaurasi Khamba.",
+      icon: <Heart className="text-pink-500" />,
+    },
+    {
+      title: "Nandgaon",
+      subtitle: "The Fortress of Nand Baba",
+      spec: "Nandishwar Temple",
+      desc: "Perched atop the Nandishwar hill, this was the home of Krishna’s foster father. It remains a symbol of fatherly love and is the center of the famous Samaj celebration during Holi.",
+      icon: <Landmark className="text-orange-600" />,
+    },
+    {
+      title: "Chhatikara",
+      subtitle: "The Divine Gateway",
+      spec: "Garuda Govind Temple",
+      desc: "A significant entrance point to the Braj region. It is home to the ancient Garuda Govind Ji temple and the magnificent Vaishno Devi Mandir, a modern architectural marvel.",
+      icon: <Compass className="text-indigo-600" />,
+    },
+    {
+      title: "Char Dham",
+      subtitle: "The Universal Confluence",
+      spec: "Srimad Bhagwat Dham",
+      desc: "A unique spiritual complex in Braj that replicates the four major pilgrimages of India. It allows devotees to experience the essence of Badrinath, Dwarka, Puri, and Rameshwaram in one sacred spot.",
+      icon: <Globe className="text-blue-600" />,
+    },
   ];
 
   return (
     <div className="bg-orange-50/30 min-h-screen font-sans">
       <Navbar />
       {/* --- HERO SECTION --- */}
-      <section className="relative h-125 flex items-center justify-center text-white overflow-hidden">
+      <section className="relative h-150 flex items-center justify-center text-white overflow-hidden">
         {/* Background Overlay with Spiritual Theme */}
         <div className="absolute inset-0 z-0">
           <img

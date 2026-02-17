@@ -56,7 +56,7 @@ export default function Navbar() {
               alt="Braj Path Logo"
               className="h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <h1 className="font-[family-name:var(--font-cursive)] text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
+            <h1 className="font-(family-name:--font-cursive) text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
               Braj Path Pradarshak
             </h1>
           </Link>

@@ -57,7 +57,7 @@ Jai Shri Krishna! 🙏`;
             alt="Spiritual Background"
             className="w-full h-full object-cover blur-[1px] opacity-70"
           />
-          <div className="absolute inset-0 bg-[#09637E]"></div>
+          <div className="absolute inset-0 blur-[2px] bg-[#09637E]"></div>
         </div>
         <div className="relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">
@@ -257,13 +257,13 @@ Jai Shri Krishna! 🙏`;
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113425.295484558!2d77.59218684784656!3d27.4819266100516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3973711751333917%3A0x673416298533b3b4!2sMathura%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
           width="100%"
           height="100%"
-          style={{ border: 0 }}
+          style={{ border: "5px solid #09637E" }}
           allowFullScreen={true}
           loading="lazy"
         ></iframe>
       </section>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

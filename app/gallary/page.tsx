@@ -5,53 +5,83 @@ import { Camera, Heart, MapPin, Eye } from "lucide-react";
 const GalleryPage = () => {
   const images = [
     {
-      url: "https://images.unsplash.com/photo-1545105511-92330f81d855?q=80&w=800",
-      title: "Evening Aarti",
-      location: "Vishram Ghat, Mathura",
-      category: "Spiritual",
-    },
-    {
-      url: "https://images.unsplash.com/photo-1621210185317-099434863768?q=80&w=800",
+      url: "/gallarypic/prem%20mandir.webp",
       title: "Divine Entrance",
       location: "Prem Mandir, Vrindavan",
       category: "Architecture",
     },
     {
-      url: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=800",
+      url: "/gallarypic/Banke-bihari.webp",
+      title: "Banke Bihari's Grace",
+      location: "Vrindavan",
+      category: "Faith & Devotion",
+    },
+    {
+      url: "/gallarypic/lathmarholi.jpg",
+      title: "Lathmar Holi Festival",
+      location: "Barsana",
+      category: "Culture",
+    },
+    {
+      url: "/gallarypic/shri-krishna-janamsthan-1.jpg",
+      title: "Sacred Birthplace",
+      location: "Shri Krishna Janmasthan, Mathura",
+      category: "Pilgrimage",
+    },
+    {
+      url: "/gallarypic/artipic.jpg",
+      title: "Arti Celebration",
+      location: "Sacred Temple",
+      category: "Spiritual",
+    },
+    {
+      url: "/gallarypic/kirti-mandir.webp",
+      title: "Finely Carved Kirti Mandir",
+      location: "Barsana",
+      category: "Architecture",
+    },
+    {
+      url: "/gallarypic/Nidhivan.png",
       title: "Peacock Grace",
       location: "Nidhivan",
       category: "Nature",
     },
     {
-      url: "https://images.unsplash.com/photo-1626078299034-9694726084e6?q=80&w=800",
+      url: "/gallarypic/goverdhanparwat.webp",
       title: "Sacred Hill",
       location: "Govardhan",
       category: "Pilgrimage",
     },
     {
-      url: "https://images.unsplash.com/photo-1582230321303-3769c279477e?q=80&w=800",
-      title: "Lathmar Holi",
-      location: "Barsana",
-      category: "Culture",
+      url: "/gallarypic/mansiganga.jpg",
+      title: "Mansi Ganga Serenity",
+      location: "Govardhan",
+      category: "Nature",
     },
     {
-      url: "https://images.unsplash.com/photo-1616421045233-04980630b4da?q=80&w=800",
-      title: "Temple Spires",
-      location: "Vrindavan",
-      category: "Architecture",
+      url: "/gallarypic/daanghati.jpg",
+      title: "Danghati's Divine Aura",
+      location: "Govardhan",
+      category: "Spiritual",
+    },
+    {
+      url: "/gallarypic/yamunaji.jpg",
+      title: "Yamuna's Sacred Flow",
+      location: "Yamunaji",
+      category: "Nature",
     },
   ];
 
   return (
     <div className="bg-[#fdfbf7] min-h-screen">
-        <Navbar />
+      <Navbar />
       {/* --- Spiritual Header --- */}
       <section className="relative py-24 text-center overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 opacity-5 pointer-events-none w-full max-w-4xl">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/3063/3063909.png"
+            src="/bansiforgallary.png"
             alt=""
-            className="w-full h-full object-contain"
+            className="w-full h-90 object-cover blur-[2px] opacity-70"
           />
         </div>
 
@@ -126,7 +156,9 @@ const GalleryPage = () => {
               experience the actual energy of these sacred lands.
             </p>
             <button className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-10 rounded-full transition-all shadow-lg transform hover:-translate-y-1">
-              Book Your Tour Now
+              <a href="/book" className="text-white no-underline">
+                Book Your Tour Now
+              </a>
             </button>
           </div>
         </div>
