@@ -16,7 +16,11 @@ const ContactPage = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -40,7 +44,10 @@ Jai Shri Krishna! 🙏`;
     const whatsappNumber = "917300548523";
 
     // Open WhatsApp
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+      "_blank",
+    );
 
     setIsSubmitted(true);
   };
@@ -53,11 +60,11 @@ Jai Shri Krishna! 🙏`;
       <section className="relative h-64 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1621210185317-099434863768?auto=format&fit=crop&q=80&w=1600"
+            src="/krishnahand.jpg"
             alt="Spiritual Background"
-            className="w-full h-full object-cover blur-[1px] opacity-70"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 blur-[2px] bg-[#09637E]"></div>
+          <div className="absolute inset-0 bg-[#09637E]/90"></div>
         </div>
         <div className="relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">
@@ -142,7 +149,7 @@ Jai Shri Krishna! 🙏`;
               {/* Subtle Peacock Background Decoration */}
               <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/512/3063/3063909.png"
+                  // src="https://cdn-icons-png.flaticon.com/512/3063/3063909.png"
                   alt=""
                   className="w-64 h-64 rotate-12"
                 />
@@ -155,13 +162,26 @@ Jai Shri Krishna! 🙏`;
               {isSubmitted ? (
                 <div className="text-center space-y-4 py-12">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-8 h-8 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    Message Sent!
+                  </h3>
                   <p className="text-gray-600">
-                    Jai Shri Krishna! Your inquiry has been sent to our team via WhatsApp. We will respond within 24 hours.
+                    Jai Shri Krishna! Your inquiry has been sent to our team via
+                    WhatsApp. We will respond within 24 hours.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
@@ -171,7 +191,10 @@ Jai Shri Krishna! 🙏`;
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="grid md:grid-cols-2 gap-6"
+                >
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-bold text-gray-700">
                       Full Name
@@ -197,7 +220,7 @@ Jai Shri Krishna! 🙏`;
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      placeholder="+91 73005 48523"
+                      placeholder="+91 0000000000"
                       className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none transition-all"
                     />
                   </div>

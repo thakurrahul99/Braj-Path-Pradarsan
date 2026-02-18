@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import PackageCard from "../components/PackageCard";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const featuredPackages = [
@@ -14,8 +15,8 @@ export default function Home() {
       duration: "2 Days / 1 Night",
       price: 2500,
       locations: ["Vrindavan", "Raman Reti"],
-      // image:
-        // "https://images.unsplash.com/photo-1569163139394-de4798aa62b3?w=500&h=300&fit=crop",
+      image:
+      "/gallarypic/prem%20mandir.webp",
     },
     {
       title: "Mathura & Barsana Yatra",
@@ -24,8 +25,8 @@ export default function Home() {
       duration: "1 Day",
       price: 1500,
       locations: ["Mathura", "Barsana", "Gokul"],
-      // image:
-        // "https://images.unsplash.com/photo-1548599821-8f94e9b34795?w=500&h=300&fit=crop",
+      image:
+      "/gallarypic/barsanaradharani.jpg",
     },
     {
       title: "Complete Braj Yatra",
@@ -34,17 +35,28 @@ export default function Home() {
       duration: "3 Days / 2 Nights",
       price: 4500,
       locations: ["Mathura", "Vrindavan", "Govardhan", "Barsana", "Nandgaon"],
-      // image:
-        // "https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94?w=500&h=300&fit=crop",
+      image:
+      "/Vrajamandala.jpg",
     },
   ];
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
 
   return (
     <main className="min-h-screen bg-neutral-50">
       <Navbar />
       <Hero />
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+          className="text-center mb-16"
+        >
           <span className="text-saffron font-semibold tracking-wider uppercase text-sm">
             Spiritual Journeys
           </span>
@@ -55,18 +67,38 @@ export default function Home() {
             Choose from our carefully curated pilgrimage packages designed to
             give you the most authentic spiritual experience.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2
+              }
+            }
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {featuredPackages.map((pkg, index) => (
             <PackageCard key={index} {...pkg} />
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Testimonials or Info Section could go here */}
       <section className="bg-cream py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
           <h2 className="text-2xl font-serif font-bold text-peacock mb-6">
             Why Choose Braj Path Pradarsan?
           </h2>
@@ -98,7 +130,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <Footer />

@@ -8,7 +8,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* About Section */}
                     <div className="space-y-4">
-                        <h3 className="text-2xl font-serif font-bold text-saffron">Braj Path Pradarsan</h3>
+                        <h3 className="text-2xl font-serif font-bold text-saffron">Braj Path Pradarsak</h3>
                         <p className="text-gray-300">
                             Your spiritual guide to the holy land of Braj. Experience the divine love of Radha and Krishna through our curated yatra packages.
                         </p>
@@ -73,7 +73,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-white/20 pt-8 mt-8 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} Braj Path Pradarsan. All rights reserved. Serving the devotees with love.</p>
+                    <p>© {new Date().getFullYear()} Braj Path Pradarsak. All rights reserved. Serving the devotees with love.</p>
                 </div>
             </div>
         </footer>

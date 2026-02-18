@@ -24,11 +24,15 @@ export default function PackageCard({
 }: PackageCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="bg-[#7AB2B2] rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col h-full transform transition-all duration-300 hover:shadow-2xl hover:border-saffron/30"
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
+      }}
+      whileHover={{
+        y: -10,
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+      }}
+      className="bg-[#7AB2B2] rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col h-full transform transition-colors duration-300 hover:border-saffron/50"
     >
       {/* Image Placeholder or Actual Image */}
       <div className="h-48 bg-gray-200 relative overflow-hidden group">
