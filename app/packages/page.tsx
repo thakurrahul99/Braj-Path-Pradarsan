@@ -42,6 +42,7 @@ export default function PackagesPage() {
       duration: "1 Day",
       price: 1800,
       locations: ["Govardhan", "Radha Kund"],
+      image: "/goverdhan-parikrama.jpg",
     },
     {
       title: "Complete Braj Yatra",
