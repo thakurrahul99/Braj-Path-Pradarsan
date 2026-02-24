@@ -10,7 +10,7 @@ import Link from "next/link";
 import {
     MapPin, Clock, Users, IndianRupee, CheckCircle2,
     XCircle, ChevronDown, Star, ArrowLeft, MessageCircle,
-    CalendarDays, Camera,
+    CalendarDays, Camera, Car,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -138,6 +138,59 @@ export default function PackageDetailPage({
                             <p className="text-lg leading-relaxed mt-4" style={{ color: "var(--text-muted)" }}>
                                 {pkg.description}
                             </p>
+                        </motion.section>
+
+                        {/* Pricing Grid */}
+                        <motion.section variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                            <SectionTitle icon={<Car size={18} />}>Pricing Tiers</SectionTitle>
+                            <p className="text-xs mt-1 mb-4" style={{ color: "var(--text-muted)" }}>
+                                ✦ All prices are <strong>per person</strong> · Prices vary by group size &amp; vehicle
+                            </p>
+                            <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid var(--border)", boxShadow: "var(--card-shadow)" }}>
+                                {/* Header */}
+                                <div
+                                    className="grid grid-cols-3 px-5 py-3 text-xs font-bold uppercase tracking-widest text-white"
+                                    style={{ background: "linear-gradient(90deg, #ff9933 0%, #ffd700 100%)" }}
+                                >
+                                    <span className="flex items-center gap-1.5"><Users size={12} /> Persons</span>
+                                    <span className="flex items-center gap-1.5"><Car size={12} /> Vehicle</span>
+                                    <span className="flex items-center gap-1.5"><IndianRupee size={12} /> Per Person</span>
+                                </div>
+                                {/* Rows */}
+                                {pkg.pricingTiers.map((tier, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: i * 0.07 }}
+                                        whileHover={{ scale: 1.01 }}
+                                        className="grid grid-cols-3 px-5 py-3.5 items-center transition-colors"
+                                        style={{
+                                            background: i % 2 === 0 ? "var(--surface)" : "var(--bg)",
+                                            borderTop: "1px solid var(--border)",
+                                        }}
+                                    >
+                                        {/* Persons */}
+                                        <span className="font-bold text-sm" style={{ color: "var(--text)" }}>
+                                            {tier.persons === "1 (Private)" ? (
+                                                <span className="inline-flex items-center gap-1">
+                                                    <span className="px-1.5 py-0.5 rounded text-white text-[10px] font-bold uppercase" style={{ background: "#ff9933" }}>Private</span>
+                                                    <span>1</span>
+                                                </span>
+                                            ) : (
+                                                tier.persons + " persons"
+                                            )}
+                                        </span>
+                                        {/* Vehicle */}
+                                        <span className="text-sm" style={{ color: "var(--text-muted)" }}>{tier.vehicle}</span>
+                                        {/* Price */}
+                                        <span className="font-bold text-base" style={{ color: "#ff9933" }}>
+                                            ₹{tier.pricePerPerson.toLocaleString("en-IN")}
+                                        </span>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </motion.section>
 
                         {/* Highlights */}
