@@ -4,40 +4,14 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import PackageCard from "../components/PackageCard";
+import { packages } from "@/data/packagesData";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Link from "next/link";
 import { Shield, Compass, Leaf } from "lucide-react";
 
-const featuredPackages = [
-  {
-    title: "Vrindavan Parikrama",
-    description:
-      "Complete spiritual tour of Vrindavan including Banke Bihari, ISKCON, Prem Mandir, and Nidhivan.",
-    duration: "2 Days / 1 Night",
-    price: 2500,
-    locations: ["Vrindavan", "Raman Reti"],
-    image: "/gallarypic/prem%20mandir.webp",
-  },
-  {
-    title: "Mathura & Barsana Yatra",
-    description:
-      "Visit the birthplace of Lord Krishna in Mathura and Radha Rani's palace in Barsana.",
-    duration: "1 Day",
-    price: 1500,
-    locations: ["Mathura", "Barsana", "Gokul"],
-    image: "/gallarypic/barsanaradharani.jpg",
-  },
-  {
-    title: "Complete Braj Yatra",
-    description:
-      "An immersive 3-day journey covering all major leela sthalis of Braj Bhoomi.",
-    duration: "3 Days / 2 Nights",
-    price: 4500,
-    locations: ["Mathura", "Vrindavan", "Govardhan", "Barsana", "Nandgaon"],
-    image: "/Vrajamandala.jpg",
-  },
-];
+// Show only 3 featured packages on the home page
+const featuredPackages = packages.slice(0, 3);
 
 const features = [
   {
@@ -107,8 +81,17 @@ export default function Home() {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {featuredPackages.map((pkg, index) => (
-            <PackageCard key={index} {...pkg} />
+          {featuredPackages.map((pkg) => (
+            <PackageCard
+              key={pkg.slug}
+              slug={pkg.slug}
+              title={pkg.title}
+              description={pkg.description}
+              duration={pkg.duration}
+              price={pkg.price}
+              locations={pkg.locations}
+              image={pkg.image}
+            />
           ))}
         </motion.div>
 
@@ -193,7 +176,6 @@ export default function Home() {
 
       {/* ── CTA Banner ── */}
       <section className="py-20 px-4 relative overflow-hidden bg-[var(--section-dark)]">
-        {/* Subtle animated blobs */}
         <motion.div
           className="absolute -top-20 -left-20 w-80 h-80 rounded-full opacity-10"
           style={{ background: "radial-gradient(circle, #ffd700, transparent)" }}

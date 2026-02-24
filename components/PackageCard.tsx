@@ -1,20 +1,26 @@
 "use client";
 
-import { Clock, MapPin, IndianRupee, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { MapPin, Clock, IndianRupee, ArrowRight } from "lucide-react";
 
 interface PackageCardProps {
+  slug: string;
   title: string;
   description: string;
   duration: string;
   price: number;
   locations: string[];
-  image?: string;
+  image: string;
 }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
+};
+
 export default function PackageCard({
+  slug,
   title,
   description,
   duration,
@@ -24,14 +30,7 @@ export default function PackageCard({
 }: PackageCardProps) {
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: { type: "spring", stiffness: 60, damping: 18 },
-        },
-      }}
+      variants={cardVariants}
       whileHover={{ y: -8, transition: { duration: 0.25 } }}
       className="group relative rounded-2xl overflow-hidden flex flex-col h-full"
       style={{
@@ -41,91 +40,95 @@ export default function PackageCard({
       }}
     >
       {/* Shimmer on hover */}
-      <motion.div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none z-10 rounded-2xl"
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none z-10 rounded-2xl transition-opacity duration-300"
         style={{
-          background:
-            "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
+          background: "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
         }}
-        transition={{ duration: 0.3 }}
       />
 
       {/* Image */}
-      <div className="h-52 relative overflow-hidden">
-        {image ? (
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-saffron/20 to-peacock/20">
-            <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
-              Spiritual Journey
-            </span>
-          </div>
-        )}
-        {/* Gradient overlay at bottom of image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Badge */}
-        <motion.div
-          className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold shadow-md backdrop-blur-sm"
-          style={{ background: "var(--surface)", color: "#1c39bb" }}
-          whileHover={{ scale: 1.05 }}
+      <div className="relative h-52 overflow-hidden">
+        <motion.img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+          whileHover={{ scale: 1.07 }}
+          transition={{ duration: 0.5 }}
+        />
+        {/* Duration pill */}
+        <div
+          className="absolute top-3 right-3 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-white backdrop-blur-sm"
+          style={{ background: "rgba(15,23,42,0.75)", border: "1px solid rgba(255,255,255,0.15)" }}
         >
-          ⭐ Best Seller
-        </motion.div>
+          <Clock size={11} />
+          {duration}
+        </div>
+        {/* Gradient overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col grow">
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        {/* Locations */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <MapPin size={13} className="text-saffron shrink-0" />
+          {locations.map((loc) => (
+            <span key={loc} className="text-xs font-semibold text-saffron">
+              {loc}
+            </span>
+          ))}
+        </div>
+
+        {/* Title */}
         <h3
-          className="text-xl font-serif font-bold mb-2 group-hover:text-saffron transition-colors duration-300"
+          className="font-serif font-bold text-xl leading-tight group-hover:text-saffron transition-colors duration-300"
           style={{ color: "var(--text)" }}
         >
           {title}
         </h3>
 
-        <p className="text-sm mb-4 line-clamp-3 grow" style={{ color: "var(--text-muted)" }}>
+        {/* Description */}
+        <p className="text-sm leading-relaxed flex-1 line-clamp-3" style={{ color: "var(--text-muted)" }}>
           {description}
         </p>
 
-        <div className="space-y-2 mb-5">
-          <div className="flex items-center text-sm gap-2" style={{ color: "var(--text-muted)" }}>
-            <Clock className="h-4 w-4 text-saffron shrink-0" />
-            <span>{duration}</span>
-          </div>
-          <div className="flex items-center text-sm gap-2" style={{ color: "var(--text-muted)" }}>
-            <MapPin className="h-4 w-4 text-saffron shrink-0" />
-            <span className="line-clamp-1">{locations.join(", ")}</span>
-          </div>
-        </div>
+        {/* Divider */}
+        <div className="h-px w-full" style={{ background: "var(--border)" }} />
 
-        <div
-          className="flex items-center justify-between mt-auto pt-4"
-          style={{ borderTop: "1px solid var(--border)" }}
-        >
-          <div>
-            <span className="text-xs uppercase font-semibold tracking-wider" style={{ color: "var(--text-subtle)" }}>
-              Per person
+        {/* Price + Buttons row */}
+        <div className="flex items-center justify-between gap-3">
+          {/* Price */}
+          <div className="flex items-center gap-0.5">
+            <IndianRupee size={17} className="text-saffron" />
+            <span className="text-2xl font-bold text-saffron">
+              {price.toLocaleString("en-IN")}
             </span>
-            <div className="flex items-center text-xl font-bold text-peacock dark:text-gold">
-              <IndianRupee className="h-4 w-4" />
-              <span>{price.toLocaleString()}</span>
-            </div>
+            <span className="text-xs ml-1 mt-1" style={{ color: "var(--text-muted)" }}>/ person</span>
           </div>
 
+          {/* View Details button */}
           <Link
-            href="/book"
-            aria-label={`Book ${title}`}
-            className="flex items-center justify-center w-11 h-11 rounded-full bg-saffron text-white hover:bg-deep-blue hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-saffron/40"
+            href={`/packages/${slug}`}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #ff9933, #ffd700)",
+              color: "white",
+              boxShadow: "0 4px 12px rgba(255,153,51,0.35)",
+            }}
           >
-            <ArrowRight className="h-5 w-5" />
+            View Details
+            <ArrowRight size={14} />
           </Link>
         </div>
+
+        {/* Secondary Book button */}
+        <Link
+          href="/book"
+          className="w-full text-center py-2.5 rounded-xl text-sm font-bold border-2 border-saffron text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+        >
+          🙏 Book Now
+        </Link>
       </div>
     </motion.div>
   );
