@@ -13,13 +13,176 @@
   --font-rubik: var(--font-rubik);
 }
 
+/* ── Light theme ──────────────────────────────────────────── */
 :root {
-  --background: #fff8e7;
-  --foreground: #1c1c1c;
+  --bg: #fff8e7;
+  --bg-alt: #f0f4f8;
+  --surface: #ffffff;
+  --surface-2: #f5f0e8;
+  --border: rgba(0, 0, 0, 0.08);
+  --text: #1c1c1c;
+  --text-muted: #6b7280;
+  --text-subtle: #9ca3af;
+  --nav-bg: #09637E;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --input-bg: #f9fafb;
+  --input-border: #d1d5db;
+  --section-dark: #09637E;
+  --footer-bg: #0f172a;
+}
+
+/* ── Dark theme ───────────────────────────────────────────── */
+.dark {
+  --bg: #0b1120;
+  --bg-alt: #111827;
+  --surface: #1e293b;
+  --surface-2: #162032;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --nav-bg: #071828;
+  --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
+  --input-bg: #0f172a;
+  --input-border: #334155;
+  --section-dark: #071828;
+  --footer-bg: #020810;
+}
+
+/* ── Smooth transitions globally ─────────────────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, box-shadow, opacity;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+/* Don't animate transforms globally (breaks framer-motion) */
+.motion-safe * {
+  transition: none;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-sans);
+}
+
+/* ── Utility classes for theme-aware colors ───────────────── */
+.bg-theme {
+  background: var(--bg);
+}
+
+.bg-theme-alt {
+  background: var(--bg-alt);
+}
+
+.bg-surface {
+  background: var(--surface);
+}
+
+.bg-surface-2 {
+  background: var(--surface-2);
+}
+
+.text-theme {
+  color: var(--text);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.border-theme {
+  border-color: var(--border);
+}
+
+.shadow-theme {
+  box-shadow: var(--card-shadow);
+}
+
+/* ── Custom scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-subtle);
+  border-radius: 99px;
+}
+
+/* ── Selection highlight ──────────────────────────────────── */
+::selection {
+  background: rgba(255, 153, 51, 0.3);
+  color: var(--text);
+}
+
+/* ── Glow animations ──────────────────────────────────────── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
 }

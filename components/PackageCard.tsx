@@ -11,7 +11,7 @@ interface PackageCardProps {
   duration: string;
   price: number;
   locations: string[];
-  image?: string; // Optional image URL
+  image?: string;
 }
 
 export default function PackageCard({
@@ -26,62 +26,93 @@ export default function PackageCard({
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50, damping: 20 } }
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { type: "spring", stiffness: 60, damping: 18 },
+        },
       }}
-      whileHover={{
-        y: -10,
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+      whileHover={{ y: -8, transition: { duration: 0.25 } }}
+      className="group relative rounded-2xl overflow-hidden flex flex-col h-full"
+      style={{
+        background: "var(--surface)",
+        boxShadow: "var(--card-shadow)",
+        border: "1px solid var(--border)",
       }}
-      className="bg-[#7AB2B2] rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col h-full transform transition-colors duration-300 hover:border-saffron/50"
     >
-      {/* Image Placeholder or Actual Image */}
-      <div className="h-48 bg-gray-200 relative overflow-hidden group">
+      {/* Shimmer on hover */}
+      <motion.div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none z-10 rounded-2xl"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
+        }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Image */}
+      <div className="h-52 relative overflow-hidden">
         {image ? (
-          <div className="relative w-full h-full">
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-saffron/20 to-peacock/20 text-gray-500">
-            <span className="text-sm font-medium">Spiritual Journey</span>
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-saffron/20 to-peacock/20">
+            <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
+              Spiritual Journey
+            </span>
           </div>
         )}
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-peacock shadow-sm">
-          Best Seller
-        </div>
+        {/* Gradient overlay at bottom of image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Badge */}
+        <motion.div
+          className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold shadow-md backdrop-blur-sm"
+          style={{ background: "var(--surface)", color: "#1c39bb" }}
+          whileHover={{ scale: 1.05 }}
+        >
+          ⭐ Best Seller
+        </motion.div>
       </div>
 
-      <div className="p-6 grow flex flex-col">
-        <h3 className="text-xl font-serif font-bold text-deep-blue mb-2 group-hover:text-saffron transition-colors">
+      {/* Content */}
+      <div className="p-6 flex flex-col grow">
+        <h3
+          className="text-xl font-serif font-bold mb-2 group-hover:text-saffron transition-colors duration-300"
+          style={{ color: "var(--text)" }}
+        >
           {title}
         </h3>
 
-        <p className="text-gray-700 text-sm mb-4 line-clamp-3 grow">
+        <p className="text-sm mb-4 line-clamp-3 grow" style={{ color: "var(--text-muted)" }}>
           {description}
         </p>
 
-        <div className="space-y-3 mb-6">
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="h-4 w-4 mr-2 text-saffron" />
+        <div className="space-y-2 mb-5">
+          <div className="flex items-center text-sm gap-2" style={{ color: "var(--text-muted)" }}>
+            <Clock className="h-4 w-4 text-saffron shrink-0" />
             <span>{duration}</span>
           </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <MapPin className="h-4 w-4 mr-2 text-saffron" />
-            <span>{locations.join(", ")}</span>
+          <div className="flex items-center text-sm gap-2" style={{ color: "var(--text-muted)" }}>
+            <MapPin className="h-4 w-4 text-saffron shrink-0" />
+            <span className="line-clamp-1">{locations.join(", ")}</span>
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-          <div className="flex flex-col">
-            <span className="text-xs text-gray-500 uppercase font-semibold">
-              Price per person
+        <div
+          className="flex items-center justify-between mt-auto pt-4"
+          style={{ borderTop: "1px solid var(--border)" }}
+        >
+          <div>
+            <span className="text-xs uppercase font-semibold tracking-wider" style={{ color: "var(--text-subtle)" }}>
+              Per person
             </span>
-            <div className="flex items-center text-lg font-bold text-peacock">
+            <div className="flex items-center text-xl font-bold text-peacock dark:text-gold">
               <IndianRupee className="h-4 w-4" />
               <span>{price.toLocaleString()}</span>
             </div>
@@ -89,8 +120,8 @@ export default function PackageCard({
 
           <Link
             href="/book"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-saffron text-white hover:bg-deep-blue transition-colors shadow-md hover:shadow-lg"
             aria-label={`Book ${title}`}
+            className="flex items-center justify-center w-11 h-11 rounded-full bg-saffron text-white hover:bg-deep-blue hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-saffron/40"
           >
             <ArrowRight className="h-5 w-5" />
           </Link>

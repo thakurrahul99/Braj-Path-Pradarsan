@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react"; // useEffect add kiya
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -14,122 +15,381 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); // Navbar show/hide state
+  const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
-  // Scroll Tracking Logic
   useEffect(() => {
-    const controlNavbar = () => {
-      if (typeof window !== "undefined") {
-        // Agar mobile menu open hai to navbar hide mat karo
-        if (isOpen) return;
-
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
-          // Niche scroll karne par hide
-          setIsVisible(false);
-        } else {
-          // Upar scroll karne par show
-          setIsVisible(true);
-        }
-        setLastScrollY(window.scrollY);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      if (!isOpen) {
+        setIsVisible(y < lastScrollY || y < 100);
       }
+      setLastScrollY(y);
     };
-
-    window.addEventListener("scroll", controlNavbar);
-    return () => window.removeEventListener("scroll", controlNavbar);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isOpen]);
 
   return (
     <motion.nav
-      // Framer Motion for smooth slide animation
-      initial={{ y: 0 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 w-full z-50 bg-[#09637E] backdrop-blur-sm shadow-md border-b-2 border-gold/20"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="fixed top-0 left-0 w-full z-50"
+      style={{
+        background: scrolled
+          ? "linear-gradient(135deg, #0f172a 0%, #1a1035 40%, #0f172a 100%)"
+          : "linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: scrolled
+          ? "1px solid rgba(255, 215, 0, 0.25)"
+          : "1px solid rgba(255,255,255,0.08)",
+        boxShadow: scrolled
+          ? "0 8px 32px rgba(0,0,0,0.4), 0 1px 0 rgba(255,215,0,0.15) inset"
+          : "none",
+        transition: "background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
+      }}
     >
-      <div className="max-w-full px-10 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-17">
-          {/* Logo Section */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <img
-              src="/logo.png"
-              alt="Braj Path Logo"
-              className="h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-            <h1 className="font-(family-name:--font-cursive) text-xl font-bold text-white group-hover:text-gold transition-colors duration-300">
-              Braj Path Pradarshak
-            </h1>
-          </Link>
+      {/* Animated gold shimmer line at top */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[2px]"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 0%, #ff9933 25%, #ffd700 50%, #ff9933 75%, transparent 100%)",
+          backgroundSize: "200% 100%",
+        }}
+        animate={{ backgroundPosition: ["200% center", "-200% center"] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+      />
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-white hover:text-deep-blue hover:bg-white/20 px-3 py-2 rounded-md text-lg font-medium transition-all duration-300"
+      <div className="max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-18">
+
+          {/* ── Logo ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <img
+                  src="/logo.png"
+                  alt="Braj Path Logo"
+                  className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+                />
+                {/* Glow ring on hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: "radial-gradient(circle, rgba(255,215,0,0.3), transparent 70%)",
+                  }}
+                />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span
+                  className="font-bold text-lg text-white group-hover:text-gold transition-colors duration-300"
+                  style={{ fontFamily: "var(--font-cursive)" }}
                 >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                href="/book"
-                className="bg-peacock text-white hover:bg-deep-blue px-6 py-2 rounded-full font-bold shadow-lg transform hover:scale-105 transition-all duration-300 border-2 border-gold/50"
-              >
-                Book Yatra
-              </Link>
-            </div>
-          </div>
+                  Braj Path
+                </span>
+                <span className="text-[10px] font-semibold tracking-[0.25em] uppercase text-saffron/80">
+                  Pradarshak
+                </span>
+              </div>
+            </Link>
+          </motion.div>
 
-          {/* Mobile Menu Button */}
-          <div className="-mr-2 flex md:hidden">
-            <button
+          {/* ── Desktop Nav Links ── */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="hidden md:flex items-center gap-1"
+          >
+            {navLinks.map((link, i) => {
+              const isActive = pathname === link.href;
+              return (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.07 }}
+                >
+                  <Link
+                    href={link.href}
+                    className="relative px-4 py-2 text-sm font-semibold tracking-wide group"
+                    style={{ color: isActive ? "#ffd700" : "rgba(255,255,255,0.85)" }}
+                  >
+                    {/* Hover background pill */}
+                    <motion.span
+                      className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100"
+                      style={{ background: "rgba(255,255,255,0.07)" }}
+                      layoutId={`hoverBg-${link.name}`}
+                      transition={{ duration: 0.2 }}
+                    />
+
+                    {/* Link text */}
+                    <span className="relative z-10 group-hover:text-white transition-colors duration-200">
+                      {link.name}
+                    </span>
+
+                    {/* Active / hover gold underline */}
+                    <motion.span
+                      className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full"
+                      style={{ background: "linear-gradient(90deg, #ff9933, #ffd700)" }}
+                      initial={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+                      whileHover={{ scaleX: 1, opacity: 1 }}
+                      animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.25 }}
+                    />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* ── Right Side: Book Button + Toggle ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="hidden md:flex items-center gap-4"
+          >
+            {/* Book Yatra CTA */}
+            <Link href="/book" className="relative group">
+              <motion.span
+                className="relative z-10 flex items-center gap-1.5 px-6 py-2.5 rounded-full text-sm font-bold text-white overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, #ff9933 0%, #ffd700 50%, #ff9933 100%)",
+                  backgroundSize: "200% 100%",
+                  boxShadow: "0 0 20px rgba(255,153,51,0.4), 0 4px 15px rgba(0,0,0,0.3)",
+                }}
+                whileHover={{
+                  backgroundPosition: "100% 0",
+                  boxShadow: "0 0 30px rgba(255,215,0,0.6), 0 4px 20px rgba(0,0,0,0.4)",
+                  scale: 1.04,
+                }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Inner shimmer */}
+                <motion.span
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%)",
+                    backgroundSize: "200% 100%",
+                  }}
+                  animate={{ backgroundPosition: ["-200% center", "200% center"] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                />
+                <Sparkles className="h-3.5 w-3.5" />
+                Book Yatra
+              </motion.span>
+
+              {/* Outer glow ring */}
+              <motion.span
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
+                style={{ border: "2px solid rgba(255,215,0,0.5)", borderRadius: "9999px" }}
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </Link>
+
+            <ThemeToggle />
+          </motion.div>
+
+          {/* ── Mobile: Toggle + Hamburger ── */}
+          <div className="flex md:hidden items-center gap-3">
+            <ThemeToggle />
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-deep-blue hover:bg-white/20 focus:outline-none transition-colors duration-300"
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <X className="block h-6 w-6" />
-              ) : (
-                <Menu className="block h-6 w-6" />
-              )}
-            </button>
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="x"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="h-6 w-6" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="h-6 w-6" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Drawer ── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-saffron border-t border-gold/20 overflow-hidden"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(15,23,42,0.98) 0%, rgba(26,16,53,0.98) 100%)",
+              borderTop: "1px solid rgba(255,215,0,0.2)",
+            }}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-white hover:text-deep-blue hover:bg-white/20 block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                href="/book"
-                onClick={() => setIsOpen(false)}
-                className="w-full text-center mt-4 block bg-peacock text-white hover:bg-deep-blue px-6 py-3 rounded-full font-bold shadow-lg transition-colors border-2 border-gold/50"
+            <div className="px-6 py-5 space-y-1">
+              {navLinks.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06, duration: 0.3 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center justify-between px-4 py-3 rounded-xl group"
+                      style={{
+                        background: isActive
+                          ? "rgba(255,153,51,0.12)"
+                          : "transparent",
+                        border: isActive
+                          ? "1px solid rgba(255,153,51,0.3)"
+                          : "1px solid transparent",
+                        color: isActive ? "#ffd700" : "rgba(255,255,255,0.8)",
+                      }}
+                    >
+                      <span className="font-semibold group-hover:text-white transition-colors">
+                        {link.name}
+                      </span>
+                      {isActive && (
+                        <motion.span
+                          layoutId="mobileActive"
+                          className="w-2 h-2 rounded-full bg-saffron"
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+
+              {/* Mobile Book button */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="pt-2"
               >
-                Book Yatra
-              </Link>
+                <Link
+                  href="/book"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-white"
+                  style={{
+                    background: "linear-gradient(135deg, #ff9933, #ffd700, #ff9933)",
+                    backgroundSize: "200% 100%",
+                    boxShadow: "0 4px 20px rgba(255,153,51,0.4)",
+                  }}
+                >
+                  <Sparkles className="h-4 w-4" />
+                  Book Your Yatra
+                </Link>
+              </motion.div>
             </div>
+
+            {/* Decorative bottom gradient */}
+            <div
+              className="h-0.5 w-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, #ff9933, #ffd700, #ff9933, transparent)",
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Theme Toggle — sun/moon pill
+// ─────────────────────────────────────────────────────────────────────────────
+function ThemeToggle() {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldBeDark = saved === "dark" || (!saved && prefersDark);
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setDark(shouldBeDark);
+
+    const obs = new MutationObserver(() => {
+      setDark(document.documentElement.classList.contains("dark"));
+    });
+    obs.observe(document.documentElement, { attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
+
+  const toggle = () => {
+    const next = !dark;
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("theme", next ? "dark" : "light");
+    setDark(next);
+  };
+
+  return (
+    <motion.button
+      onClick={toggle}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+      whileTap={{ scale: 0.88 }}
+      className="relative flex items-center px-1 focus:outline-none cursor-pointer shrink-0"
+      style={{
+        width: 52,
+        height: 28,
+        borderRadius: 999,
+        background: dark
+          ? "linear-gradient(135deg, #1a237e, #0d47a1)"
+          : "linear-gradient(135deg, #ff9933, #ffd700)",
+        boxShadow: dark
+          ? "0 0 12px rgba(100,120,255,0.4)"
+          : "0 0 12px rgba(255,153,51,0.5)",
+        border: "1.5px solid rgba(255,255,255,0.25)",
+        transition: "background 0.4s ease, box-shadow 0.4s ease",
+      }}
+    >
+      <motion.span
+        animate={{ x: dark ? 24 : 0 }}
+        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        className="w-5 h-5 rounded-full flex items-center justify-center text-xs leading-none select-none"
+        style={{
+          background: "white",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
+        }}
+      >
+        {dark ? "🌙" : "☀️"}
+      </motion.span>
+    </motion.button>
   );
 }
