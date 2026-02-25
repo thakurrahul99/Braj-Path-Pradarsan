@@ -15,13 +15,17 @@ export default function PackagesPage() {
       <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--section-dark)]">
         <motion.div
           className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #ffd700, transparent)" }}
+          style={{
+            background: "radial-gradient(circle, #ffd700, transparent)",
+          }}
           animate={{ scale: [1, 1.15, 1], rotate: [0, 15, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
           className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #ff9933, transparent)" }}
+          style={{
+            background: "radial-gradient(circle, #ff9933, transparent)",
+          }}
           animate={{ scale: [1.1, 1, 1.1] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -45,7 +49,8 @@ export default function PackagesPage() {
           </h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
             Discover the divine essence of Braj with our thoughtfully designed
-            yatra packages. Each journey is crafted for a deeply spiritual experience.
+            yatra packages. Each journey is crafted for a deeply spiritual
+            experience.
           </p>
         </motion.div>
       </section>
@@ -72,6 +77,8 @@ export default function PackagesPage() {
               price={pkg.price}
               locations={pkg.locations}
               image={pkg.image}
+              discountBadge={pkg.discountBadge}
+              visualTag={pkg.visualTag}
             />
           ))}
         </motion.div>

@@ -12,11 +12,17 @@ interface PackageCardProps {
   price: number;
   locations: string[];
   image: string;
+  discountBadge: string;
+  visualTag: string;
 }
 
 const cardVariants = {
   hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" as const },
+  },
 };
 
 export default function PackageCard({
@@ -27,6 +33,8 @@ export default function PackageCard({
   price,
   locations,
   image,
+  discountBadge,
+  visualTag,
 }: PackageCardProps) {
   return (
     <motion.div
@@ -43,11 +51,12 @@ export default function PackageCard({
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none z-10 rounded-2xl transition-opacity duration-300"
         style={{
-          background: "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
+          background:
+            "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
         }}
       />
 
-      {/* Image */}
+      {/* Image + Badges */}
       <div className="relative h-52 overflow-hidden">
         <motion.img
           src={image}
@@ -56,16 +65,31 @@ export default function PackageCard({
           whileHover={{ scale: 1.07 }}
           transition={{ duration: 0.5 }}
         />
-        {/* Duration pill */}
+        {/* Discount Badge */}
+        {discountBadge && (
+          <div className="absolute top-3 left-3 bg-linear-to-br from-saffron to-gold text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20 border-2 border-white/70">
+            {discountBadge}
+          </div>
+        )}
+        {/* Visual Tag */}
+        {visualTag && (
+          <div className="absolute top-3 right-3 bg-white/90 text-saffron border-2 border-saffron text-xs font-bold px-3 py-1.5 rounded-full shadow z-20">
+            {visualTag}
+          </div>
+        )}
+        {/* Duration pill (moved below badges) */}
         <div
-          className="absolute top-3 right-3 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-white backdrop-blur-sm"
-          style={{ background: "rgba(15,23,42,0.75)", border: "1px solid rgba(255,255,255,0.15)" }}
+          className="absolute top-12 right-3 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-white backdrop-blur-sm"
+          style={{
+            background: "rgba(15,23,42,0.75)",
+            border: "1px solid rgba(255,255,255,0.15)",
+          }}
         >
           <Clock size={11} />
           {duration}
         </div>
         {/* Gradient overlay at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-black/40 to-transparent" />
       </div>
 
       {/* Content */}
@@ -89,7 +113,10 @@ export default function PackageCard({
         </h3>
 
         {/* Description */}
-        <p className="text-sm leading-relaxed flex-1 line-clamp-3" style={{ color: "var(--text-muted)" }}>
+        <p
+          className="text-sm leading-relaxed flex-1 line-clamp-3"
+          style={{ color: "var(--text-muted)" }}
+        >
           {description}
         </p>
 
@@ -104,7 +131,12 @@ export default function PackageCard({
             <span className="text-2xl font-bold text-saffron">
               {price.toLocaleString("en-IN")}
             </span>
-            <span className="text-xs ml-1 mt-1" style={{ color: "var(--text-muted)" }}>/ person</span>
+            <span
+              className="text-xs ml-1 mt-1"
+              style={{ color: "var(--text-muted)" }}
+            >
+              / person
+            </span>
           </div>
 
           {/* View Details button */}

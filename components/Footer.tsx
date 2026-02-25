@@ -35,7 +35,7 @@ export default function Footer() {
                         className="space-y-4"
                     >
                         <h3 className="text-2xl font-serif font-bold text-saffron">
-                            Braj Path Pradarsak
+                            Braj Path Pradarshak
                         </h3>
                         <p className="text-gray-400 leading-relaxed text-sm">
                             Your spiritual guide to the holy land of Braj. Experience the divine
@@ -43,7 +43,7 @@ export default function Footer() {
                         </p>
                         <div className="flex items-center gap-1 text-gold text-sm">
                             <Heart className="h-4 w-4 fill-gold" />
-                            <span className="italic">Serving with devotion since 2020</span>
+                            <span className="italic">Serving with devotion since 2026</span>
                         </div>
                     </motion.div>
 
@@ -82,7 +82,7 @@ export default function Footer() {
                         <h3 className="text-xl font-serif font-bold text-gold">Contact Us</h3>
                         <ul className="space-y-3">
                             {[
-                                { Icon: MapPin, text: "Vrindavan, Mathura, UP, India" },
+                                { Icon: MapPin, text: "Goverdhan, Mathura, UP, India" },
                                 { Icon: Phone, text: "+91 73005 48523" },
                                 { Icon: Mail, text: "info@brajpath.com" },
                             ].map(({ Icon, text }) => (
@@ -113,7 +113,7 @@ export default function Footer() {
 
                 <div className="border-t border-white/10 pt-6 mt-6 text-center text-gray-500 text-sm">
                     <p>
-                        © {new Date().getFullYear()} Braj Path Pradarsak. All rights reserved.{" "}
+                        © {new Date().getFullYear()} Braj Path Pradarshak. All rights reserved.{" "}
                         <span className="text-gold">Jai Shri Krishna 🙏</span>
                     </p>
                 </div>

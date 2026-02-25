@@ -36,7 +36,11 @@ const features = [
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
 };
 
 const stagger: Variants = {
@@ -68,7 +72,10 @@ export default function Home() {
           >
             Our Popular Packages
           </h2>
-          <p className="max-w-2xl mx-auto" style={{ color: "var(--text-muted)" }}>
+          <p
+            className="max-w-2xl mx-auto"
+            style={{ color: "var(--text-muted)" }}
+          >
             Choose from our carefully curated pilgrimage packages designed to
             give you the most authentic spiritual experience.
           </p>
@@ -91,6 +98,8 @@ export default function Home() {
               price={pkg.price}
               locations={pkg.locations}
               image={pkg.image}
+              discountBadge={pkg.discountBadge}
+              visualTag={pkg.visualTag}
             />
           ))}
         </motion.div>
@@ -109,6 +118,52 @@ export default function Home() {
             View All Packages →
           </Link>
         </motion.div>
+        {/* ── Custom Package Section ── */}
+        <section className="mt-20 max-w-4xl mx-auto bg-linear-to-br from-[#fffbe6] via-[#fff7e0] to-[#ffe6c7] dark:from-[#18140a] dark:via-[#1a1812] dark:to-[#2a210e] rounded-3xl shadow-lg border border-gold/20 p-8 md:p-14 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-block py-1 px-4 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold tracking-widest mb-4">
+              ✦ BUILD YOUR OWN YATRA ✦
+            </span>
+            <h2
+              className="text-3xl md:text-4xl font-serif font-bold mb-3"
+              style={{ color: "white" }}
+            >
+              Custom Package
+            </h2>
+            <p
+              className="max-w-2xl mx-auto text-lg md:text-xl mb-6"
+              style={{ color: "white" }}
+            >
+              Design your perfect Braj pilgrimage—choose your destinations,
+              travel style, group size, and special requirements. Our team will
+              craft a personalized spiritual journey just for you!
+            </p>
+            <ul
+              className="max-w-xl mx-auto text-left text-base md:text-lg mb-8 space-y-2"
+              style={{ color: "white" }}
+            >
+              <li>• Select from all major Braj destinations</li>
+              <li>
+                • Flexible pickup/drop (Mathura, Agra, Delhi, Jaipur, Bharatpur,
+                more)
+              </li>
+              <li>• AC vehicles, expert guides, and custom itinerary</li>
+              <li>• Add-ons: Satvik meals, night stay, special darshans</li>
+              <li>• Quick booking via WhatsApp</li>
+            </ul>
+            <Link
+              href="/custom-package"
+              className="inline-block bg-saffron text-white font-bold px-10 py-4 rounded-full hover:bg-gold hover:text-deep-blue hover:scale-105 transition-all duration-300 shadow-lg shadow-saffron/30 text-lg"
+            >
+              Create Your Custom Package →
+            </Link>
+          </motion.div>
+        </section>
       </section>
 
       {/* ── Why Choose Us ── */}
@@ -165,7 +220,10 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-3" style={{ color }}>
                   {title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {desc}
                 </p>
               </motion.div>
@@ -175,16 +233,20 @@ export default function Home() {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section className="py-20 px-4 relative overflow-hidden bg-[var(--section-dark)]">
+      <section className="py-20 px-4 relative overflow-hidden bg-(--section-dark)">
         <motion.div
           className="absolute -top-20 -left-20 w-80 h-80 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #ffd700, transparent)" }}
+          style={{
+            background: "radial-gradient(circle, #ffd700, transparent)",
+          }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 5, repeat: Infinity }}
         />
         <motion.div
           className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #ff9933, transparent)" }}
+          style={{
+            background: "radial-gradient(circle, #ff9933, transparent)",
+          }}
           animate={{ scale: [1.2, 1, 1.2] }}
           transition={{ duration: 5, repeat: Infinity }}
         />

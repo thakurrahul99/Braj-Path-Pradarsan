@@ -29,6 +29,8 @@ export interface Package {
   meetingPoint: string;
   category: string;
   pricingTiers: PricingTier[];
+  discountBadge: string; // e.g. "30% OFF"
+  visualTag: string; // e.g. "Best for Senior Citizens"
 }
 
 export const packages: Package[] = [
@@ -121,11 +123,14 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 1199 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 999 },
     ],
+    discountBadge: "30% OFF",
+    visualTag: "Best for Senior Citizens",
   },
 
   {
     slug: "giriraj-braj-yatra",
-    title: "Giriraj Braj Yatra — Govardhan Parikrama, Barsana, Nandgaon & Kokilavan",
+    title:
+      "Giriraj Braj Yatra — Govardhan Parikrama, Barsana, Nandgaon & Kokilavan",
     tagline:
       "Two sacred days — walk the hill Krishna lifted, ascend Radha Rani's throne, and wander Krishna's enchanted forests",
     description:
@@ -134,7 +139,7 @@ export const packages: Package[] = [
     price: 2199,
     groupSize: "2–12 People",
     locations: ["Govardhan", "Barsana", "Nandgaon", "Kokilavan"],
-    image: "/goverdhan-parikrama.jpg",
+    image: "/gallarypic/barsanaradharani.jpg",
     gallery: [
       "/goverdhan-parikrama.jpg",
       "/Barsana.jpg",
@@ -168,7 +173,8 @@ export const packages: Package[] = [
     itinerary: [
       {
         day: 1,
-        title: "Govardhan Parikrama — The Sacred Circumambulation of Giriraj Ji",
+        title:
+          "Govardhan Parikrama — The Sacred Circumambulation of Giriraj Ji",
         activities: [
           "Early morning pick-up at 5:30 AM from Mathura / Vrindavan",
           "Reach Jatipura, Govardhan — auspicious beginning of Govardhan Parikrama",
@@ -192,7 +198,8 @@ export const packages: Package[] = [
       },
       {
         day: 2,
-        title: "Barsana → Nandgaon → Kokilavan — Radha's Realm & Krishna's Forests",
+        title:
+          "Barsana → Nandgaon → Kokilavan — Radha's Realm & Krishna's Forests",
         activities: [
           "Early morning pick-up at 6:30 AM from hotel",
           "Drive to Barsana (approx. 30 km)",
@@ -271,6 +278,8 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 2999 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 2199 },
     ],
+    discountBadge: "33% OFF",
+    visualTag: "Photographer's Choice",
   },
   {
     slug: "govardhan-parikrama",
@@ -283,8 +292,12 @@ export const packages: Package[] = [
     price: 999,
     groupSize: "2–15 People",
     locations: ["Govardhan", "Radha Kund", "Kusum Sarovar", "Mansi Ganga"],
-    image: "/goverdhan-parikrama.jpg",
-    gallery: ["/goverdhan-parikrama.jpg", "/kusumsarovar.jpg"],
+    image: "/gallarypic/radhakund.webp",
+    gallery: [
+      "/goverdhan-parikrama.jpg",
+      "/kusumsarovar.jpg",
+      "/gallarypic/daanghati.jpg",
+    ],
     category: "Parikrama Tour",
     meetingPoint: "Jatipura, Govardhan (Mukharwind Temple Gate)",
     highlights: [
@@ -318,7 +331,8 @@ export const packages: Package[] = [
     itinerary: [
       {
         day: 1,
-        title: "Govardhan Parikrama — The Complete Sacred Circuit of Giriraj Ji",
+        title:
+          "Govardhan Parikrama — The Complete Sacred Circuit of Giriraj Ji",
         activities: [
           "Early morning pick-up at 5:00 AM from Mathura / Vrindavan",
           "Drive to Jatipura, Govardhan (approx. 22 km)",
@@ -409,6 +423,8 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 1199 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 999 },
     ],
+    discountBadge: "35% OFF",
+    visualTag: "Devotee's Favourite",
   },
   {
     slug: "barsana-nandgaon-kokilavan-kaman",
@@ -461,7 +477,8 @@ export const packages: Package[] = [
     itinerary: [
       {
         day: 1,
-        title: "Barsana → Nandgaon → Kokilavan → Kama — Radha's Realm & Krishna's Forests",
+        title:
+          "Barsana → Nandgaon → Kokilavan → Kama — Radha's Realm & Krishna's Forests",
         activities: [
           "Pick-up at 6:30 AM from Mathura / Vrindavan",
           "Drive to Barsana (approx. 40 km)",
@@ -493,7 +510,8 @@ export const packages: Package[] = [
       },
       {
         day: 2,
-        title: "Kaman Char Dham — Braj Badrinath, Braj Kedarnath, Braj Yamunotri & Braj Gangotri",
+        title:
+          "Kaman Char Dham — Braj Badrinath, Braj Kedarnath, Braj Yamunotri & Braj Gangotri",
         activities: [
           "Early morning wake up and local Kaman town morning walk",
           "Charana Pahadi — BRAJ BADRINATH: climb the sacred hill of divine footprints of Radha-Krishna",
@@ -570,6 +588,8 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 3199 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 2199 },
     ],
+    discountBadge: "30% OFF",
+    visualTag: "Hidden Gems Tour",
   },
   {
     slug: "sampurna-braj-mandal-yatra",
@@ -645,7 +665,8 @@ export const packages: Package[] = [
     itinerary: [
       {
         day: 1,
-        title: "Mathura Janmabhoomi & Vrindavan Darshan — Ending with Prem Mandir Light Show",
+        title:
+          "Mathura Janmabhoomi & Vrindavan Darshan — Ending with Prem Mandir Light Show",
         activities: [
           "Pick-up from Mathura Junction at 7:00 AM",
           "Krishna Janmabhoomi darshan — history tour of the sacred prison cell of Krishna's birth",
@@ -668,7 +689,8 @@ export const packages: Package[] = [
       },
       {
         day: 2,
-        title: "Mahavan → Gokul → Raval (Radha Rani's Birthplace) → Govardhan Evening Darshan",
+        title:
+          "Mahavan → Gokul → Raval (Radha Rani's Birthplace) → Govardhan Evening Darshan",
         activities: [
           "Morning pick-up at 7:00 AM from hotel",
           "Drive to Mahavan / Maha Van (approx. 20 km from Mathura)",
@@ -694,7 +716,8 @@ export const packages: Package[] = [
       },
       {
         day: 3,
-        title: "Barsana → Nandgaon → Kokilavan → Kama — Radha's Kingdom & Krishna's Forests",
+        title:
+          "Barsana → Nandgaon → Kokilavan → Kama — Radha's Kingdom & Krishna's Forests",
         activities: [
           "Early morning pick-up at 6:30 AM from hotel",
           "Drive to Barsana (approx. 30 km from Govardhan)",
@@ -725,7 +748,8 @@ export const packages: Package[] = [
       },
       {
         day: 4,
-        title: "Kaman Char Dham — Braj Badrinath, Braj Kedarnath, Braj Yamunotri & Braj Gangotri",
+        title:
+          "Kaman Char Dham — Braj Badrinath, Braj Kedarnath, Braj Yamunotri & Braj Gangotri",
         activities: [
           "Early morning wake up — Kaman town morning walk and local chai",
           "Charana Pahadi — BRAJ BADRINATH: climb the sacred hill of Radha-Krishna's divine footprints",
@@ -811,6 +835,8 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 8499 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 5999 },
     ],
+    discountBadge: "33% OFF",
+    visualTag: "Ultimate Pilgrimage",
   },
   {
     slug: "vrindavan-mathura-mahawan-gokul",
@@ -823,7 +849,7 @@ export const packages: Package[] = [
     price: 1099,
     groupSize: "2–12 People",
     locations: ["Vrindavan", "Mathura", "Raval", "Mahawan", "Gokul"],
-    image: "/gallarypic/prem%20mandir.webp",
+    image: "/gallarypic/ISKCON-Temple-Vrindavan.webp",
     gallery: [
       "/gallarypic/prem%20mandir.webp",
       "/gallarypic/shri-krishna-janamsthan-1.jpg",
@@ -954,6 +980,8 @@ export const packages: Package[] = [
       { persons: "4+", vehicle: "Innova Crysta", pricePerPerson: 1599 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 1099 },
     ],
+    discountBadge: "35% OFF",
+    visualTag: "Family Special",
   },
 
   {
@@ -967,11 +995,11 @@ export const packages: Package[] = [
     price: 999,
     groupSize: "2–12 People",
     locations: ["Barsana", "Nandgaon", "Kokilavan"],
-    image: "/Barsana.jpg",
+    image: "/gallarypic/kirti-mandir.webp",
     gallery: [
       "/Barsana.jpg",
       "/gallarypic/barsanaradharani.jpg",
-      "/goverdhan-parikrama.jpg",
+      "/gallarypic/kirti-mandir.webp",
     ],
     category: "Day Tour",
     meetingPoint: "Mathura Junction Railway Station or Vrindavan Bus Stand",
@@ -1007,7 +1035,8 @@ export const packages: Package[] = [
     itinerary: [
       {
         day: 1,
-        title: "Barsana → Nandgaon → Kokilavan — Radha's Realm & Krishna's Forests",
+        title:
+          "Barsana → Nandgaon → Kokilavan — Radha's Realm & Krishna's Forests",
         activities: [
           "Pick-up at 6:30 AM from Mathura / Vrindavan",
           "Drive to Barsana (approx. 40 km, 1 hour)",
@@ -1100,12 +1129,11 @@ export const packages: Package[] = [
       { persons: "4-6", vehicle: "Innova Crysta", pricePerPerson: 1299 },
       { persons: "6+", vehicle: "Tempo Traveller", pricePerPerson: 999 },
     ],
+    discountBadge: "30% OFF",
+    visualTag: "Radha Devotee's Pick",
   },
-
 ];
-
 
 export function getPackageBySlug(slug: string): Package | undefined {
   return packages.find((p) => p.slug === slug);
 }
-

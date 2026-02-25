@@ -181,8 +181,8 @@ export default function CustomPackagePage() {
         const nightsMatch = durationText.match(/(\d+)\s*Night/i);
         const nights = nightsMatch ? parseInt(nightsMatch[1]) : 1;
 
-        const nightStayCost = nightStay ? 800 * nights : 0;
-        const foodCost = food ? 400 * nights : 0;
+        const nightStayCost = nightStay ? 1000 * nights : 0;
+        const foodCost = food ? 499 * nights : 0;
 
         const perPersonTotal =
             basePerPerson + pickupSurcharge + dropSurcharge + nightStayCost + foodCost;

@@ -69,7 +69,11 @@ const ContactPage = () => {
       {/* ── Header ── */}
       <section className="relative h-72 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0">
-          <img src="/krishnahand.jpg" alt="Spiritual Background" className="w-full h-full object-cover opacity-40 dark:opacity-20" />
+          <img
+            src="/krishnahand.jpg"
+            alt="Spiritual Background"
+            className="w-full h-full object-cover opacity-40 dark:opacity-20"
+          />
           <div className="absolute inset-0 bg-[#09637E]/80 dark:bg-[#020810]/85" />
         </div>
         {/* Floating sparkle particles */}
@@ -79,7 +83,11 @@ const ContactPage = () => {
             className="absolute w-1.5 h-1.5 bg-gold rounded-full pointer-events-none"
             style={{ left: `${i * 13}%`, top: `${(i * 17) % 100}%` }}
             animate={{ y: [0, -40, 0], opacity: [0, 1, 0] }}
-            transition={{ duration: 3 + i % 2, repeat: Infinity, delay: i * 0.5 }}
+            transition={{
+              duration: 3 + (i % 2),
+              repeat: Infinity,
+              delay: i * 0.5,
+            }}
           />
         ))}
 
@@ -92,15 +100,18 @@ const ContactPage = () => {
           <span className="inline-block py-1 px-4 rounded-full bg-white/10 border border-gold/30 text-gold text-xs font-semibold tracking-widest mb-4">
             ✦ GET IN TOUCH ✦
           </span>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">Connect With Us</h1>
-          <p className="text-amber-200 italic">"Your guide to the divine path is just a message away"</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">
+            Connect With Us
+          </h1>
+          <p className="text-amber-200 italic">
+            "Your guide to the divine path is just a message away"
+          </p>
         </motion.div>
       </section>
 
       {/* ── Content ── */}
       <section className="max-w-7xl mx-auto py-16 px-6">
         <div className="grid lg:grid-cols-3 gap-10">
-
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-5">
             <motion.div
@@ -109,9 +120,16 @@ const ContactPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="p-8 rounded-2xl"
-              style={{ background: "var(--surface)", boxShadow: "var(--card-shadow)", border: "1px solid var(--border)" }}
+              style={{
+                background: "var(--surface)",
+                boxShadow: "var(--card-shadow)",
+                border: "1px solid var(--border)",
+              }}
             >
-              <h2 className="text-2xl font-serif font-bold mb-6" style={{ color: "var(--text)" }}>
+              <h2
+                className="text-2xl font-serif font-bold mb-6"
+                style={{ color: "var(--text)" }}
+              >
                 Our Office
               </h2>
 
@@ -130,9 +148,24 @@ const ContactPage = () => {
                       <Icon size={22} style={{ color }} />
                     </motion.div>
                     <div>
-                      <h4 className="font-bold text-sm" style={{ color: "var(--text)" }}>{label}</h4>
-                      <p className="text-sm" style={{ color: "var(--text-muted)" }}>{text}</p>
-                      <p className="text-xs" style={{ color: "var(--text-subtle)" }}>{sub}</p>
+                      <h4
+                        className="font-bold text-sm"
+                        style={{ color: "var(--text)" }}
+                      >
+                        {label}
+                      </h4>
+                      <p
+                        className="text-sm"
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        {text}
+                      </p>
+                      <p
+                        className="text-xs"
+                        style={{ color: "var(--text-subtle)" }}
+                      >
+                        {sub}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -144,9 +177,14 @@ const ContactPage = () => {
                 transition={{ delay: 0.3 }}
                 viewport={{ once: true }}
                 className="mt-8 p-4 rounded-xl italic text-sm"
-                style={{ background: "rgba(255,153,51,0.08)", border: "1px solid rgba(255,153,51,0.15)", color: "var(--text-muted)" }}
+                style={{
+                  background: "rgba(255,153,51,0.08)",
+                  border: "1px solid rgba(255,153,51,0.15)",
+                  color: "var(--text-muted)",
+                }}
               >
-                "Atithidevo Bhava — The guest is equivalent to God. We look forward to serving you."
+                "Atithidevo Bhava — The guest is equivalent to God. We look
+                forward to serving you."
               </motion.div>
             </motion.div>
           </div>
@@ -159,12 +197,19 @@ const ContactPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="p-8 md:p-10 rounded-2xl relative overflow-hidden"
-              style={{ background: "var(--surface)", boxShadow: "var(--card-shadow)", border: "1px solid var(--border)" }}
+              style={{
+                background: "var(--surface)",
+                boxShadow: "var(--card-shadow)",
+                border: "1px solid var(--border)",
+              }}
             >
               {/* Strip */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-saffron via-gold to-saffron" />
 
-              <h2 className="text-3xl font-serif font-bold mb-8" style={{ color: "var(--text)" }}>
+              <h2
+                className="text-3xl font-serif font-bold mb-8"
+                style={{ color: "var(--text)" }}
+              >
                 Inquiry Form
               </h2>
 
@@ -180,15 +225,25 @@ const ContactPage = () => {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        delay: 0.2,
+                      }}
                       className="w-20 h-20 rounded-full flex items-center justify-center mx-auto"
                       style={{ background: "rgba(34,197,94,0.12)" }}
                     >
                       <CheckCircle2 className="w-10 h-10 text-green-500" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold" style={{ color: "var(--text)" }}>Message Sent!</h3>
+                    <h3
+                      className="text-2xl font-bold"
+                      style={{ color: "var(--text)" }}
+                    >
+                      Message Sent!
+                    </h3>
                     <p style={{ color: "var(--text-muted)" }}>
-                      Jai Shri Krishna! 🙏 Your inquiry has been sent via WhatsApp. We'll respond within 24 hours.
+                      Jai Shri Krishna! 🙏 Your inquiry has been sent via
+                      WhatsApp. We'll respond within 24 hours.
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
@@ -207,41 +262,88 @@ const ContactPage = () => {
                     className="grid md:grid-cols-2 gap-6"
                   >
                     <div className="flex flex-col gap-2">
-                      <label className={labelClass} style={{ color: "var(--text-muted)" }}>Full Name</label>
+                      <label
+                        className={labelClass}
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        Full Name
+                      </label>
                       <input
-                        type="text" name="name" value={formData.name} onChange={handleChange}
-                        required placeholder="e.g. Rahul Singh"
-                        className={inputClass} style={inputStyle}
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="e.g. Rahul Singh"
+                        className={inputClass}
+                        style={inputStyle}
                       />
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <label className={labelClass} style={{ color: "var(--text-muted)" }}>Mobile Number</label>
+                      <label
+                        className={labelClass}
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        Mobile Number
+                      </label>
                       <input
-                        type="tel" name="phone" value={formData.phone} onChange={handleChange}
-                        required placeholder="+91 00 000 00000"
-                        className={inputClass} style={inputStyle}
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder="+91 00 000 00000"
+                        className={inputClass}
+                        style={inputStyle}
                       />
                     </div>
 
                     <div className="flex flex-col gap-2 md:col-span-2">
-                      <label className={labelClass} style={{ color: "var(--text-muted)" }}>Which places are you interested in?</label>
-                      <select
-                        name="place" value={formData.place} onChange={handleChange}
-                        className={inputClass} style={inputStyle}
+                      <label
+                        className={labelClass}
+                        style={{ color: "var(--text-muted)" }}
                       >
-                        {["Complete Braj Tour", "Mathura & Vrindavan", "Govardhan Parikrama", "Barsana & Nandgaon Heritage", "Custom Itinerary"].map(o => (
+                        Which places are you interested in?
+                      </label>
+                      <select
+                        name="place"
+                        value={formData.place}
+                        onChange={handleChange}
+                        className={inputClass}
+                        style={inputStyle}
+                      >
+                        {[
+                          "Select a Package",
+                          "Mathura Vrindavan 1 Day Tour",
+                          "Giriraj Braj Yatra — Govardhan Parikrama, Barsana, Nandgaon & Kokilavan",
+                          "Govardhan Parikrama — Full Sacred Circumambulation of Giriraj Ji",
+                          "Braj Panchkosi Yatra — Barsana, Nandgaon, Kokilavan & Kaman Char Dham",
+                          "Sampurna Braj Mandal Yatra — The Complete Braj Pilgrimage",
+                          "Divya Braj Darshan — Vrindavan, Mathura, Raval, Mahawan & Gokul",
+                          "Radha Rani Ki Nagri — Barsana, Nandgaon & Kokilavan 1 Day Tour",
+                          "Custom Package",
+                        ].map((o) => (
                           <option key={o}>{o}</option>
                         ))}
                       </select>
                     </div>
 
                     <div className="flex flex-col gap-2 md:col-span-2">
-                      <label className={labelClass} style={{ color: "var(--text-muted)" }}>Message / Special Requirements</label>
+                      <label
+                        className={labelClass}
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        Message / Special Requirements
+                      </label>
                       <textarea
-                        name="message" value={formData.message} onChange={handleChange}
-                        rows={4} placeholder="Tell us about your group size or travel dates..."
-                        className={inputClass} style={{ ...inputStyle, resize: "none" }}
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={4}
+                        placeholder="Tell us about your group size or travel dates..."
+                        className={inputClass}
+                        style={{ ...inputStyle, resize: "none" }}
                       />
                     </div>
 
@@ -265,7 +367,10 @@ const ContactPage = () => {
       </section>
 
       {/* ── Map ── */}
-      <section className="h-96 w-full" style={{ borderTop: "4px solid var(--border)" }}>
+      <section
+        className="h-96 w-full"
+        style={{ borderTop: "4px solid var(--border)" }}
+      >
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
