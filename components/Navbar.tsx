@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Packages", href: "/packages" },
+  { name: "Custom Package", href: "/custom-package", badge: "✦ New" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -122,7 +123,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="relative px-4 py-2 text-sm font-semibold tracking-wide group"
+                    className="relative px-4 py-2 text-sm font-semibold tracking-wide group flex items-center gap-1"
                     style={{ color: isActive ? "#ffd700" : "rgba(255,255,255,0.85)" }}
                   >
                     {/* Hover background pill */}
@@ -137,6 +138,16 @@ export default function Navbar() {
                     <span className="relative z-10 group-hover:text-white transition-colors duration-200">
                       {link.name}
                     </span>
+
+                    {/* Optional badge (e.g. "New") */}
+                    {"badge" in link && link.badge && (
+                      <span
+                        className="relative z-10 text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none"
+                        style={{ background: "rgba(255,153,51,0.25)", color: "#ff9933", border: "1px solid rgba(255,153,51,0.4)" }}
+                      >
+                        {link.badge}
+                      </span>
+                    )}
 
                     {/* Active / hover gold underline */}
                     <motion.span
