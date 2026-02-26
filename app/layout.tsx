@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Caveat, Rubik } from "next/font/google";
+import {
+  Playfair_Display,
+  Inter,
+  Caveat,
+  Rubik,
+  Great_Vibes,
+} from "next/font/google";
 import "./globals.css";
-import { Great_Vibes } from "next/font/google";
+
+import WhatsAppFloating from "../components/WhatsAppFloating";
 
 const cursiveFont = Great_Vibes({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-cursive", // CSS variable banayein
 });
-
-
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -51,6 +56,7 @@ export default function RootLayout({
       >
         <main className="pt-17"></main>
         {children}
+        <WhatsAppFloating />
       </body>
     </html>
   );

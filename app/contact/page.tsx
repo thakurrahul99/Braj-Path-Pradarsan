@@ -55,7 +55,8 @@ const ContactPage = () => {
     {
       Icon: Phone,
       label: "Phone & WhatsApp",
-      text: "+91 73005 48523",
+      text: "+91 9639591697",
+      subText: "+91 7078117174",
       sub: "Available 9:00 AM - 8:00 PM IST",
       bg: "rgba(34,197,94,0.12)",
       color: "#16a34a",
@@ -63,7 +64,7 @@ const ContactPage = () => {
     {
       Icon: Mail,
       label: "Email",
-      text: "contact@brajpath.com",
+      text: "brajpathpradarshak@gmail.com",
       sub: "We reply within 24 hours",
       bg: "rgba(20,184,166,0.12)",
       color: "#0d9488",
@@ -142,7 +143,7 @@ const ContactPage = () => {
               </h2>
 
               <div className="space-y-6">
-                {contactItems.map(({ Icon, label, text, sub, bg, color }) => (
+                {contactItems.map(({ Icon, label, text, subText, sub, bg, color }) => (
                   <motion.div
                     key={label}
                     className="flex items-start gap-4"
@@ -167,6 +168,8 @@ const ContactPage = () => {
                         style={{ color: "var(--text-muted)" }}
                       >
                         {text}
+                        <br/>
+                        {subText}
                       </p>
                       <p
                         className="text-xs"

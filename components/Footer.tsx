@@ -89,7 +89,7 @@ export default function Footer() {
                   { Icon: MapPin, text: "Goverdhan, Mathura, UP, India" },
                   { Icon: Phone, text: "+91 9639591697" },
                   { Icon: Phone, text: "+91 7078117174" },
-                  { Icon: Mail, text: "info@brajpath.com" },
+                  { Icon: Mail, text: "brajpathpradarshak@gmail.com" },
                 ].map(({ Icon, text }) => (
                   <li
                     key={text}

@@ -23,12 +23,18 @@
   --text: #1c1c1c;
   --text-muted: #6b7280;
   --text-subtle: #9ca3af;
-  --nav-bg: #09637E;
+  --nav-bg: #09637e;
   --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   --input-bg: #f9fafb;
   --input-border: #d1d5db;
-  --section-dark: #09637E;
+  --section-dark: #09637e;
   --footer-bg: #0f172a;
+  /* WhatsApp Floating Window Theme */
+  --wa-float-bg: var(--surface);
+  --wa-float-text: var(--text);
+  --wa-float-btn: #25d366;
+  --wa-float-btn-hover: #1ebe5d;
+  --wa-float-shadow: 0 4px 24px rgba(37, 211, 102, 0.15);
 }
 
 /* ── Dark theme ───────────────────────────────────────────── */
@@ -53,7 +59,8 @@
 *,
 *::before,
 *::after {
-  transition-property: background-color, border-color, color, box-shadow, opacity;
+  transition-property:
+    background-color, border-color, color, box-shadow, opacity;
   transition-duration: 0.25s;
   transition-timing-function: ease;
 }
@@ -124,7 +131,6 @@ body {
 
 /* ── Glow animations ──────────────────────────────────────── */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -136,7 +142,6 @@ body {
 }
 
 @keyframes pulseGlow {
-
   0%,
   100% {
     opacity: 0.4;
@@ -160,7 +165,6 @@ body {
 }
 
 @keyframes sparkle {
-
   0%,
   100% {
     opacity: 0;
@@ -182,7 +186,12 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
   background-size: 200% auto;
   animation: shimmer 2s linear infinite;
 }

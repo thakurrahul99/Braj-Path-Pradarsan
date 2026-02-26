@@ -57,7 +57,7 @@ export default function Navbar() {
     >
       {/* Animated gold shimmer line at top */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-[2px]"
+        className="absolute top-0 left-0 right-0 h-0.5"
         style={{
           background:
             "linear-gradient(90deg, transparent 0%, #ff9933 25%, #ffd700 50%, #ff9933 75%, transparent 100%)",
@@ -67,7 +67,7 @@ export default function Navbar() {
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
       />
 
-      <div className="max-w-screen-xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-18">
 
           {/* ── Logo ── */}
@@ -151,7 +151,7 @@ export default function Navbar() {
 
                     {/* Active / hover gold underline */}
                     <motion.span
-                      className="absolute bottom-0.5 left-3 right-3 h-[2px] rounded-full"
+                      className="absolute bottom-0.5 left-3 right-3 h-0.5 rounded-full"
                       style={{ background: "linear-gradient(90deg, #ff9933, #ffd700)" }}
                       initial={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
                       whileHover={{ scaleX: 1, opacity: 1 }}
