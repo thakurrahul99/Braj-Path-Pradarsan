@@ -15,14 +15,21 @@ const ContactPage = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `*Inquiry from Braj Path Pradarsan Website*\n--------------------------------\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Interested Places:* ${formData.place}\n*Message:* ${formData.message || "No specific message"}\n--------------------------------\nJai Shri Krishna! 🙏`;
-    window.open(`https://wa.me/917300548523?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(
+      `https://wa.me/917078117174?text=${encodeURIComponent(msg)}`,
+      "_blank",
+    );
     setIsSubmitted(true);
   };
 
@@ -32,7 +39,8 @@ const ContactPage = () => {
     color: "var(--text)",
   };
 
-  const inputClass = "w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-saffron transition-all duration-300";
+  const inputClass =
+    "w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-saffron transition-all duration-300";
   const labelClass = "text-sm font-semibold mb-1.5 block";
 
   const contactItems = [

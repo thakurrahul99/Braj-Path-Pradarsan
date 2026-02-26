@@ -31,7 +31,7 @@ export default function BookPage() {
     e.preventDefault();
     const msg = `*New Booking Request for Braj Yatra*\n--------------------------------\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Date:* ${formData.date}\n*Travelers:* ${formData.travelers}\n*Package:* ${formData.package}\n*Message:* ${formData.message}\n--------------------------------\nPlease confirm availability. Jai Shri Krishna! 🙏`;
     window.open(
-      `https://wa.me/917300548523?text=${encodeURIComponent(msg)}`,
+      `https://wa.me/917078117174?text=${encodeURIComponent(msg)}`,
       "_blank",
     );
     setIsSubmitted(true);
@@ -236,7 +236,7 @@ export default function BookPage() {
                         }}
                       >
                         {[
-                            "Select a Package",
+                          "Select a Package",
                           "Mathura Vrindavan 1 Day Tour",
                           "Giriraj Braj Yatra — Govardhan Parikrama, Barsana, Nandgaon & Kokilavan",
                           "Govardhan Parikrama — Full Sacred Circumambulation of Giriraj Ji",
@@ -244,7 +244,7 @@ export default function BookPage() {
                           "Sampurna Braj Mandal Yatra — The Complete Braj Pilgrimage",
                           "Divya Braj Darshan — Vrindavan, Mathura, Raval, Mahawan & Gokul",
                           "Radha Rani Ki Nagri — Barsana, Nandgaon & Kokilavan 1 Day Tour",
-                            "Custom Package",
+                          "Custom Package",
                         ].map((opt) => (
                           <option key={opt}>{opt}</option>
                         ))}
