@@ -119,7 +119,8 @@ export default function Home() {
           </Link>
         </motion.div>
         {/* ── Custom Package Section ── */}
-        <section className="mt-20 max-w-4xl mx-auto bg-linear-to-br from-[#fffbe6] via-[#fff7e0] to-[#ffe6c7] dark:from-[#18140a] dark:via-[#1a1812] dark:to-[#2a210e] rounded-3xl shadow-lg border border-gold/20 p-8 md:p-14 text-center">
+        <section className="relative mt-20 max-w-4xl mx-auto bg-linear-to-r from-[#188e4f] via-[#62b85c] to-[#b2c333] dark:from-[#000000] dark:via-[#0b0b0b] dark:to-[#0c0c0c] rounded-3xl shadow-lg border border-gold/20 p-8 md:p-14 text-center">
+          <div className="absolute inset-0 opacity-35 dark:opacity-5 bg-[url('/custom.jpeg')] bg-cover bg-center rounded-3xl pointer-events-none z-0 " />
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,26 +131,26 @@ export default function Home() {
               ✦ BUILD YOUR OWN YATRA ✦
             </span>
             <h2
-              className="text-3xl md:text-4xl font-serif font-bold mb-3"
-              style={{ color: "white" }}
+              className="text-3xl md:text-4xl font-serif font-bold mb-3 text-gold drop-shadow-lg"
+              style={{ color: "#FFD700" }}
             >
               Custom Package
             </h2>
             <p
-              className="max-w-2xl mx-auto text-lg md:text-xl mb-6"
-              style={{ color: "white" }}
+              className="max-w-2xl mx-auto text-lg md:text-xl mb-6 text-deep-blue font-semibold drop-shadow-lg"
+              style={{ color: "#fff" }}
             >
               Design your perfect Braj pilgrimage—choose your destinations,
               travel style, group size, and special requirements. Our team will
               craft a personalized spiritual journey just for you!
             </p>
             <ul
-              className="max-w-xl mx-auto text-left text-base md:text-lg mb-8 space-y-2"
-              style={{ color: "white" }}
+              className="max-w-xl mx-auto text-left text-base md:text-lg mb-8 text-deep-blue font-semibold drop-shadow-lg"
+              style={{ color: "#fff" }}
             >
               <li>• Select from all major Braj destinations</li>
               <li>
-                • Flexible pickup/drop (Mathura, Agra, Delhi, Jaipur, Bharatpur,
+                • Flexible pickup/drop (Mathura, Agra, Delhi, Jaipur, Bharatpur and
                 more)
               </li>
               <li>• AC vehicles, expert guides, and custom itinerary</li>
@@ -158,7 +159,8 @@ export default function Home() {
             </ul>
             <Link
               href="/custom-package"
-              className="inline-block bg-saffron text-white font-bold px-10 py-4 rounded-full hover:bg-gold hover:text-deep-blue hover:scale-105 transition-all duration-300 shadow-lg shadow-saffron/30 text-lg"
+              className="relative z-10 inline-block bg-saffron text-white font-bold px-10 py-4 rounded-full hover:bg-gold hover:text-deep-blue hover:scale-105 transition-all duration-300 shadow-lg shadow-saffron/30 text-lg focus:outline-none focus:ring-2 focus:ring-gold"
+              style={{ position: "relative" }}
             >
               Create Your Custom Package →
             </Link>

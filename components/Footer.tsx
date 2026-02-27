@@ -12,9 +12,17 @@ const quickLinks = [
 ];
 
 const socials = [
-    { Icon: Facebook, href: "#", label: "Facebook" },
-    { Icon: Twitter, href: "#", label: "Twitter" },
-    { Icon: Instagram, href: "#", label: "Instagram" },
+  {
+    Icon: Facebook,
+    href: "https://www.facebook.com/share/1CVhTP1MKt/",
+    label: "Facebook",
+  },
+  { Icon: Twitter, href: "#", label: "Twitter" },
+  {
+    Icon: Instagram,
+    href: "https://www.instagram.com/brajpathpradarshak?igsh=MWlzcGczZnVqMzdwaw==",
+    label: "Instagram",
+  },
 ];
 
 export default function Footer() {

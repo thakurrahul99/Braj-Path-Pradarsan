@@ -36,7 +36,7 @@ const PICKUP_LOCATIONS = [
     label: "Mathura / Vrindavan",
     icon: "🕌",
     tiers: [
-      { maxPeople: 99, totalCost: 0 }, // always free
+      { maxPeople: 24, totalCost: 0 }, // always free
     ] as SurchargeTier[],
   },
   {
@@ -48,7 +48,7 @@ const PICKUP_LOCATIONS = [
       { maxPeople: 4, totalCost: 5000 },
       { maxPeople: 6, totalCost: 5600 },
       { maxPeople: 12, totalCost: 6500 },
-      { maxPeople: 99, totalCost: 8000 },
+      { maxPeople: 24, totalCost: 8000 },
     ] as SurchargeTier[],
   },
   {
@@ -60,7 +60,7 @@ const PICKUP_LOCATIONS = [
       { maxPeople: 4, totalCost: 6900 },
       { maxPeople: 6, totalCost: 8000 },
       { maxPeople: 12, totalCost: 9000 },
-      { maxPeople: 99, totalCost: 15000 },
+      { maxPeople: 24, totalCost: 12000 },
     ] as SurchargeTier[],
   },
   {
@@ -72,7 +72,7 @@ const PICKUP_LOCATIONS = [
       { maxPeople: 4, totalCost: 8000 },
       { maxPeople: 6, totalCost: 9000 },
       { maxPeople: 12, totalCost: 10000 },
-      { maxPeople: 99, totalCost: 8000 },
+      { maxPeople: 24, totalCost: 13000 },
     ] as SurchargeTier[],
   },
   {
@@ -84,7 +84,7 @@ const PICKUP_LOCATIONS = [
       { maxPeople: 4, totalCost: 2600 },
       { maxPeople: 6, totalCost: 3000 },
       { maxPeople: 12, totalCost: 3500 },
-      { maxPeople: 99, totalCost: 4800 },
+      { maxPeople: 24, totalCost: 4800 },
     ] as SurchargeTier[],
   },
   {
@@ -96,7 +96,7 @@ const PICKUP_LOCATIONS = [
       { maxPeople: 4, totalCost: 5000 },
       { maxPeople: 6, totalCost: 5600 },
       { maxPeople: 12, totalCost: 6500 },
-      { maxPeople: 99, totalCost: 8000 },
+      { maxPeople: 24, totalCost: 8000 },
     ] as SurchargeTier[],
   },
 ];
@@ -334,10 +334,10 @@ export default function CustomPackagePage() {
           <span className="inline-block py-1 px-4 rounded-full bg-white/10 border border-gold/30 text-gold text-xs font-semibold tracking-widest mb-4">
             ✦ BUILD YOUR OWN YATRA ✦
           </span>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2 text-gold drop-shadow-lg">
             Custom Package
           </h1>
-          <p className="text-amber-200 italic">
+          <p className="text-amber-300 italic font-semibold drop-shadow-lg">
             "Design your perfect Braj pilgrimage and we'll bring it to life"
           </p>
         </motion.div>
@@ -410,7 +410,7 @@ export default function CustomPackagePage() {
                       </motion.div>
                       {i < STEPS.length - 1 && (
                         <div
-                          className="flex-1 h-0.5 mx-1 rounded-full mt-[-18px]"
+                          className="flex-1 h-0.5 mx-1 rounded-full -mt-4.5"
                           style={{
                             background:
                               step > s.id
@@ -440,7 +440,7 @@ export default function CustomPackagePage() {
                     boxShadow: "var(--card-shadow)",
                   }}
                 >
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-saffron via-gold to-saffron rounded-t-2xl" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-saffron via-gold to-saffron rounded-t-2xl" />
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -1148,7 +1148,7 @@ export default function CustomPackagePage() {
                 boxShadow: "var(--card-shadow)",
               }}
             >
-              <div className="h-1 bg-gradient-to-r from-saffron via-gold to-saffron" />
+              <div className="h-1 bg-linear-to-r from-saffron via-gold to-saffron" />
               <div className="p-6">
                 <h3
                   className="font-serif font-bold text-lg mb-4 flex items-center gap-2"
