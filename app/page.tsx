@@ -4,6 +4,10 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import PackageCard from "../components/PackageCard";
+import StatsCounter from "../components/StatsCounter";
+import HowItWorks from "../components/HowItWorks";
+import Testimonials from "../components/Testimonials";
+import GalleryPreview from "../components/GalleryPreview";
 import { packages } from "@/data/packagesData";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -53,6 +57,9 @@ export default function Home() {
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
       <Navbar />
       <Hero />
+
+      {/* ── Stats Counter ── */}
+      <StatsCounter />
 
       {/* ── Popular Packages ── */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -168,6 +175,9 @@ export default function Home() {
         </section>
       </section>
 
+      {/* ── How It Works ── */}
+      <HowItWorks />
+
       {/* ── Why Choose Us ── */}
       <section
         className="py-20 px-4 sm:px-6 lg:px-8"
@@ -234,6 +244,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── Gallery Preview ── */}
+      <GalleryPreview />
+
+      {/* ── Testimonials ── */}
+      <Testimonials />
+
       {/* ── CTA Banner ── */}
       <section className="py-20 px-4 relative overflow-hidden bg-(--section-dark)">
         <motion.div
@@ -272,6 +288,29 @@ export default function Home() {
           >
             Book Your Yatra 🙏
           </Link>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            {[
+              { icon: "🔒", text: "Secure Booking" },
+              { icon: "✅", text: "Verified Guides" },
+              { icon: "🏆", text: "100% Satisfaction" },
+              { icon: "📞", text: "24/7 WhatsApp Support" },
+            ].map(({ icon, text }) => (
+              <span
+                key={text}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: "rgba(255,255,255,0.85)",
+                }}
+              >
+                <span>{icon}</span>
+                {text}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </section>
 

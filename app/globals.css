@@ -9,7 +9,7 @@
 
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
-  --font-script: var(--font-tangerine);
+  --font-script: var(--font-caveat);
   --font-rubik: var(--font-rubik);
 }
 
@@ -131,6 +131,7 @@ body {
 
 /* ── Glow animations ──────────────────────────────────────── */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -142,6 +143,7 @@ body {
 }
 
 @keyframes pulseGlow {
+
   0%,
   100% {
     opacity: 0.4;
@@ -165,6 +167,7 @@ body {
 }
 
 @keyframes sparkle {
+
   0%,
   100% {
     opacity: 0;
@@ -186,12 +189,10 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 100%);
   background-size: 200% auto;
   animation: shimmer 2s linear infinite;
 }

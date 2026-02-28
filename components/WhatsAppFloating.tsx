@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 
-// WhatsApp number and pre-filled message
-const whatsappNumber = "7078117174"; // Change to your number
+const whatsappNumber = "7078117174";
 const message = encodeURIComponent("Radhe Radhe! Mujhe enquiry karni hai.");
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
 
@@ -23,12 +22,11 @@ export default function WhatsAppFloating() {
         bottom: "2rem",
         right: "2rem",
         zIndex: 1000,
-        // background: "var(--wa-float-btn)",
-        border: "none", // ensure no border
+        border: "none",
         borderRadius: "50%",
         width: "56px",
         height: "56px",
-        boxShadow: "none", // remove any shadow if present
+        boxShadow: "none",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -37,12 +35,6 @@ export default function WhatsAppFloating() {
         padding: 0,
         transform: isHovered ? "scale(1.2)" : "scale(1)",
       }}
-      //   onMouseOver={(e) =>
-      // (e.currentTarget.style.background = "var(--wa-float-btn-hover)")
-      //   }
-      //   onMouseOut={(e) =>
-      // (e.currentTarget.style.background = "var(--wa-float-btn)")
-      //   }
     >
       <img
         src="/icons8-whatsapp.gif"

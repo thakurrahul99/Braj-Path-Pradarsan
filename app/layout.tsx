@@ -27,7 +27,7 @@ const inter = Inter({
 });
 
 const caveat = Caveat({
-  variable: "--font-tangerine",
+  variable: "--font-caveat",
   weight: ["400", "700"],
   subsets: ["latin"],
 });
@@ -54,7 +54,6 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased bg-cream text-gray-900 font-sans`}
       >
-        <main className="pt-17"></main>
         {children}
         <WhatsAppFloating />
       </body>
