@@ -80,7 +80,7 @@ export default function HowItWorks() {
                 {/* Steps */}
                 <div className="flex flex-col md:flex-row items-stretch">
                     {steps.map(({ icon: Icon, step, title, desc, color }, i) => (
-                        <>
+                        <div key={step} className="contents">
                             <motion.div
                                 key={step}
                                 initial={{ opacity: 0, y: 28 }}
@@ -123,7 +123,7 @@ export default function HowItWorks() {
                                 </p>
                             </motion.div>
                             {i < steps.length - 1 && connector}
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>

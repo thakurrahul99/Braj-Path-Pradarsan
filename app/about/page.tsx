@@ -232,7 +232,7 @@ const AboutUsPage = () => {
               style={{ color: "var(--text-muted)" }}
             >
               At <b className="text-saffron">Braj Path Pradarsak</b>,
-               our mission is not just to organize tours — it is
+              our mission is not just to organize tours — it is
               to connect hearts with the divine land of Braj. We believe that
               every journey to Vrindavan and Mathura is a spiritual calling, not
               just a trip. Our purpose is to provide safe, comfortable, and
@@ -409,7 +409,7 @@ const AboutUsPage = () => {
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
               Hidden Treasures of Braj
             </h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ color: "#c8e8ed" }}>
               Beyond the bustling temples lie the silent groves and mystical
               corners known only to true seekers.
             </p>
@@ -461,15 +461,15 @@ const AboutUsPage = () => {
             className="text-center mb-14"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 mb-4">
-              <Heart size={14} className="text-pink-400" />
-              <span className="text-xs font-semibold tracking-widest uppercase text-pink-400">
+              <Heart size={14} style={{ color: "#7ab2b2" }} />
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#7ab2b2" }}>
                 Testimonials
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
               What Our Pilgrims Say
             </h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ color: "#c8e8ed" }}>
               Real experiences from devotees who journeyed with us in Braj.
             </p>
           </motion.div>
@@ -512,11 +512,11 @@ const AboutUsPage = () => {
                   alt={t.name}
                   className="w-16 h-16 rounded-full mb-4 border-2 border-gold object-cover"
                 />
-                <p className="text-blue-100/80 text-sm leading-relaxed mb-4">
+                <p className="text-sm leading-relaxed mb-4" style={{ color: "#c8e8ed" }}>
                   "{t.text}"
                 </p>
                 <div className="font-bold text-lg text-gold mb-1">{t.name}</div>
-                <div className="text-xs text-blue-100">{t.location}</div>
+                <div className="text-xs" style={{ color: "#7ab2b2" }}>{t.location}</div>
               </motion.div>
             ))}
           </motion.div>

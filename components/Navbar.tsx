@@ -19,7 +19,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isDark, setIsDark] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const checkDark = () => setIsDark(document.documentElement.classList.contains("dark"));
+    checkDark();
+    const obs = new MutationObserver(checkDark);
+    obs.observe(document.documentElement, { attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,22 +50,32 @@ export default function Navbar() {
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed top-0 left-0 w-full z-50"
       style={{
-        background: scrolled
-          ? "linear-gradient(135deg, #0f172a 0%, #1a1035 40%, #0f172a 100%)"
-          : "linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
-        borderBottom: scrolled
-          ? "1px solid rgba(255, 215, 0, 0.25)"
-          : "1px solid rgba(255,255,255,0.08)",
+        background: isDark
+          ? scrolled
+            ? "linear-gradient(135deg, #0f172a 0%, #1a1035 40%, #0f172a 100%)"
+            : "linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%)"
+          : scrolled
+            ? "rgba(255, 252, 245, 0.88)"
+            : "rgba(255, 255, 255, 0.12)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: isDark
+          ? scrolled
+            ? "1px solid rgba(255, 215, 0, 0.25)"
+            : "1px solid rgba(255,255,255,0.08)"
+          : scrolled
+            ? "1px solid rgba(255, 153, 51, 0.25)"
+            : "1px solid rgba(255, 255, 255, 0.15)",
         boxShadow: scrolled
-          ? "0 8px 32px rgba(0,0,0,0.4), 0 1px 0 rgba(255,215,0,0.15) inset"
+          ? isDark
+            ? "0 8px 32px rgba(0,0,0,0.4), 0 1px 0 rgba(255,215,0,0.15) inset"
+            : "0 4px 24px rgba(0,0,0,0.08), 0 1px 0 rgba(255,153,51,0.15) inset"
           : "none",
         transition: "background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
       }}
     >
       {/* Animated gold shimmer line at top */}
-      <motion.div
+      {/* <motion.div
         className="absolute top-0 left-0 right-0 h-0.5"
         style={{
           background:
@@ -65,7 +84,7 @@ export default function Navbar() {
         }}
         animate={{ backgroundPosition: ["200% center", "-200% center"] }}
         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-      />
+      /> */}
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-18">
@@ -93,8 +112,11 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col leading-tight">
                 <span
-                  className="font-bold text-lg text-white group-hover:text-gold transition-colors duration-300"
-                  style={{ fontFamily: "var(--font-cursive)" }}
+                  className="font-bold text-lg transition-colors duration-300"
+                  style={{
+                    fontFamily: "var(--font-cursive)",
+                    color: isDark ? "#ffffff" : "#09637e",
+                  }}
                 >
                   Braj Path
                 </span>
@@ -124,7 +146,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className="relative px-4 py-2 text-sm font-semibold tracking-wide group flex items-center gap-1"
-                    style={{ color: isActive ? "#ffd700" : "rgba(255,255,255,0.85)" }}
+                    style={{
+                      color: isActive
+                        ? isDark ? "#ffd700" : "#b84d00"
+                        : isDark ? "rgba(255,255,255,0.85)" : "rgba(20,10,0,0.80)"
+                    }}
                   >
                     {/* Hover background pill */}
                     <motion.span
@@ -135,7 +161,10 @@ export default function Navbar() {
                     />
 
                     {/* Link text */}
-                    <span className="relative z-10 group-hover:text-white transition-colors duration-200">
+                    <span
+                      className="relative z-10 transition-colors duration-200"
+                      style={{ color: "inherit" }}
+                    >
                       {link.name}
                     </span>
 

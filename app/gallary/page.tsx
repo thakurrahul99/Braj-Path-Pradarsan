@@ -175,7 +175,7 @@ const GalleryPage = () => {
   ];
 
   return (
-    <div className="bg-[#fdfbf7] min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--bg)" }}>
       <Navbar />
       {/* --- Spiritual Header --- */}
       <section className="relative py-24 text-center overflow-hidden">
@@ -188,12 +188,15 @@ const GalleryPage = () => {
         </div>
 
         <div className="relative z-10 px-6">
-          <Camera className="mx-auto text-amber-600 mb-4" size={40} />
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-blue-900 mb-4">
+          <Camera className="mx-auto mb-4" size={40} style={{ color: "#088395" }} />
+          <h1
+            className="text-4xl md:text-5xl font-serif font-bold mb-4"
+            style={{ color: "#09637e" }}
+          >
             Braj Darshan Gallery
           </h1>
-          <div className="h-1 w-20 bg-amber-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-600 italic max-w-2xl mx-auto text-lg">
+          <div className="h-1 w-20 mx-auto rounded-full mb-6" style={{ background: "#ff9933" }} />
+          <p className="italic max-w-2xl mx-auto text-lg" style={{ color: "var(--text-muted)" }}>
             "Capturing the divine vibrations and eternal beauty of Shri
             Krishna's playground."
           </p>
@@ -206,7 +209,12 @@ const GalleryPage = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="relative group overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 break-inside-avoid"
+              className="relative group overflow-hidden rounded-2xl break-inside-avoid transition-all duration-500"
+              style={{
+                background: "var(--surface)",
+                boxShadow: "var(--card-shadow)",
+                border: "1px solid var(--border)",
+              }}
             >
               {/* Image Container */}
               <div className="relative overflow-hidden">
@@ -216,16 +224,21 @@ const GalleryPage = () => {
                   className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Overlay on Hover */}
-                <div className="absolute inset-0 bg-linear-to-t from-blue-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6"
+                  style={{
+                    background: "linear-gradient(to top, rgba(9,99,126,0.92) 0%, transparent 60%)",
+                  }}
+                >
                   <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2 block">
+                    <span className="text-xs font-bold uppercase tracking-widest mb-2 block" style={{ color: "#ffd700" }}>
                       {image.category}
                     </span>
                     <h3 className="text-white text-xl font-serif font-bold mb-1 flex items-center gap-2">
                       {image.title}
                     </h3>
-                    <p className="text-gray-200 text-sm flex items-center gap-1">
-                      <MapPin size={14} className="text-amber-500" />{" "}
+                    <p className="text-sm flex items-center gap-1" style={{ color: "#7ab2b2" }}>
+                      <MapPin size={14} style={{ color: "#ff9933" }} />{" "}
                       {image.location}
                     </p>
                   </div>
@@ -241,23 +254,30 @@ const GalleryPage = () => {
         </div>
 
         {/* --- Experience Section --- */}
-        <div className="mt-20 p-12 rounded-3xl bg-blue-900 text-center relative overflow-hidden">
+        <div
+          className="mt-20 p-12 rounded-3xl text-center relative overflow-hidden"
+          style={{ background: "#09637e" }}
+        >
           {/* Spiritual Pattern Overlay */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/mandala.png')]"></div>
+          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/mandala.png')]" />
 
           <div className="relative z-10">
             <Heart
-              className="mx-auto text-red-400 mb-6 animate-pulse"
+              className="mx-auto mb-6 animate-pulse"
               size={48}
+              style={{ color: "#ffd700" }}
             />
             <h2 className="text-3xl font-serif font-bold text-white mb-4">
               See It for Yourself
             </h2>
-            <p className="text-blue-100 mb-8 max-w-xl mx-auto">
+            <p className="mb-8 max-w-xl mx-auto" style={{ color: "#ebf4f6" }}>
               Photos can only capture a fraction of the peace. Join us to
               experience the actual energy of these sacred lands.
             </p>
-            <button className="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-10 rounded-full transition-all shadow-lg transform hover:-translate-y-1">
+            <button
+              className="font-bold py-3 px-10 rounded-full transition-all shadow-lg transform hover:-translate-y-1 hover:shadow-xl"
+              style={{ background: "#ff9933", color: "white" }}
+            >
               <a href="/book" className="text-white no-underline">
                 Book Your Tour Now
               </a>
@@ -266,7 +286,14 @@ const GalleryPage = () => {
         </div>
       </section>
 
-      <footer className="py-8 bg-white text-center text-gray-400 text-sm border-t border-orange-50">
+      <footer
+        className="py-8 text-center text-sm border-t"
+        style={{
+          background: "var(--footer-bg)",
+          color: "var(--text-muted)",
+          borderColor: "var(--border)",
+        }}
+      >
         "Braj Path Pradarshak — Guiding you home."
       </footer>
     </div>

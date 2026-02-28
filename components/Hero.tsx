@@ -12,7 +12,7 @@ const floatingOrbs = [
 
 export default function Hero() {
   return (
-    <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#088395] to-deep-blue dark:from-[#041826] dark:to-[#020810]">
+    <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a7fa0] via-[#1a6b7e] to-[#1a3a5c] dark:from-[#041826] dark:via-[#041826] dark:to-[#020810]">
 
       {/* Animated floating orbs */}
       {floatingOrbs.map((orb, i) => (

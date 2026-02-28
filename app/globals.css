@@ -15,18 +15,18 @@
 
 /* ── Light theme ──────────────────────────────────────────── */
 :root {
-  --bg: #fff8e7;
-  --bg-alt: #f0f4f8;
+  --bg: #ebf4f6;
+  --bg-alt: #d9ecf0;
   --surface: #ffffff;
-  --surface-2: #f5f0e8;
-  --border: rgba(0, 0, 0, 0.08);
-  --text: #1c1c1c;
-  --text-muted: #6b7280;
-  --text-subtle: #9ca3af;
-  --nav-bg: #09637e;
-  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  --input-bg: #f9fafb;
-  --input-border: #d1d5db;
+  --surface-2: #dff0f4;
+  --border: rgba(9, 99, 126, 0.15);
+  --text: #0d3340;
+  --text-muted: #4a7a8a;
+  --text-subtle: #7ab2b2;
+  --nav-bg: rgba(235, 244, 246, 0.95);
+  --card-shadow: 0 4px 24px rgba(9, 99, 126, 0.10);
+  --input-bg: #f2fafc;
+  --input-border: #7ab2b2;
   --section-dark: #09637e;
   --footer-bg: #0f172a;
   /* WhatsApp Floating Window Theme */
