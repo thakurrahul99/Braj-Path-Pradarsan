@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -73,17 +72,15 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
-
       {/* ── Header ── */}
       <section className="relative h-72 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/krishnahand.jpg"
             alt="Spiritual Background"
-            className="w-full h-full object-cover opacity-40 dark:opacity-20"
+            className="w-full h-full object-cover blur-xs"
           />
-          <div className="absolute inset-0 bg-[#09637E]/80 dark:bg-[#020810]/85" />
+          <div className="absolute inset-0 bg-[#09637E]/50 dark:bg-[#020810]/70" />
         </div>
         {/* Floating sparkle particles */}
         {[...Array(8)].map((_, i) => (
@@ -168,7 +165,7 @@ const ContactPage = () => {
                         style={{ color: "var(--text-muted)" }}
                       >
                         {text}
-                        <br/>
+                        <br />
                         {subText}
                       </p>
                       <p

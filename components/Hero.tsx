@@ -1,144 +1,312 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star, Users, MapPin } from "lucide-react";
+import { useRef } from "react";
 
-const floatingOrbs = [
-  { size: 320, x: "-10%", y: "-10%", delay: 0, color: "#ff9933" },
-  { size: 280, x: "70%", y: "60%", delay: 1.5, color: "#ffd700" },
-  { size: 200, x: "40%", y: "-20%", delay: 3, color: "#1c39bb" },
+const stats = [
+  { icon: Users, value: "500+", label: "Happy Pilgrims" },
+  { icon: Star, value: "4.9★", label: "Average Rating" },
+  { icon: MapPin, value: "15+", label: "Sacred Places" },
 ];
 
+const particles = Array.from({ length: 20 }, (_, i) => ({
+  id: i,
+  left: `${(i * 5.3 + 2) % 98}%`,
+  top: `${(i * 7.9 + 5) % 90}%`,
+  duration: 3 + (i % 4),
+  delay: i * 0.3,
+  size: i % 3 === 0 ? "w-1.5 h-1.5" : "w-1 h-1",
+}));
+
 export default function Hero() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
   return (
-    <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a7fa0] via-[#1a6b7e] to-[#1a3a5c] dark:from-[#041826] dark:via-[#041826] dark:to-[#020810]">
+    <div
+      ref={ref}
+      className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden mt-18 "
+    >
+      {/* ── Parallax Background Image ── */}
+      <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
+        <img
+          src="/herobg.jpeg"
+          alt="Sacred Vrindavan"
+          className="w-full h-full object-cover scale-110 blur-[3px]"
+        />
+      </motion.div>
 
-      {/* Animated floating orbs */}
-      {floatingOrbs.map((orb, i) => (
+      {/* ── Cinematic Gradient Overlays ── */}
+      <div
+        className="absolute inset-0 z-1"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(4,20,38,0.72) 0%, rgba(4,20,38,0.45) 40%, rgba(4,20,38,0.88) 100%)",
+        }}
+      />
+      {/* Left vignette */}
+      <div
+        className="absolute inset-0 z-2"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 50%, rgba(9,99,126,0.35) 0%, transparent 60%)",
+        }}
+      />
+      {/* Right warm glow */}
+      <div
+        className="absolute inset-0 z-2"
+        style={{
+          background:
+            "radial-gradient(ellipse at 100% 30%, rgba(255,153,51,0.2) 0%, transparent 55%)",
+        }}
+      />
+      {/* Bottom fade */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-48 z-2"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(4,20,38,0.95), transparent)",
+        }}
+      />
+
+      {/* ── Animated Gold Particles ── */}
+      {particles.map((p) => (
         <motion.div
-          key={i}
-          className="absolute rounded-full opacity-20 dark:opacity-10 pointer-events-none"
+          key={p.id}
+          className={`absolute ${p.size} rounded-full pointer-events-none z-3`}
           style={{
-            width: orb.size,
-            height: orb.size,
-            left: orb.x,
-            top: orb.y,
-            background: `radial-gradient(circle, ${orb.color}, transparent 70%)`,
+            left: p.left,
+            top: p.top,
+            background: p.id % 2 === 0 ? "#ffd700" : "#ff9933",
+            boxShadow: `0 0 4px ${p.id % 2 === 0 ? "#ffd700" : "#ff9933"}`,
           }}
           animate={{
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.35, 0.2],
+            y: [0, -70, 0],
+            opacity: [0, 0.9, 0],
+            scale: [0, 1.4, 0],
           }}
           transition={{
-            duration: 6 + i * 1.5,
+            duration: p.duration,
             repeat: Infinity,
-            delay: orb.delay,
+            delay: p.delay,
             ease: "easeInOut",
           }}
         />
       ))}
 
-      {/* Animated gold particles */}
-      {[...Array(12)].map((_, i) => (
+      {/* ── Main Content ── */}
+      <motion.div
+        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        style={{ y: textY, opacity }}
+      >
+        {/* Top badge */}
         <motion.div
-          key={`p-${i}`}
-          className="absolute w-1 h-1 bg-gold rounded-full pointer-events-none"
-          style={{
-            left: `${(i * 8.3) % 100}%`,
-            top: `${(i * 13.7) % 100}%`,
-          }}
-          animate={{
-            y: [0, -60, 0],
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-          }}
-          transition={{
-            duration: 3 + (i % 3),
-            repeat: Infinity,
-            delay: i * 0.4,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="flex items-center justify-center gap-2 mb-6"
+        >
+          <div className="h-px w-12 bg-linear-to-r from-transparent to-gold/70" />
+          <span
+            className="inline-flex items-center gap-2 py-1.5 px-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase backdrop-blur-md"
+            style={{
+              background: "rgba(255,215,0,0.12)",
+              border: "1px solid rgba(255,215,0,0.35)",
+              color: "#ffd700",
+            }}
+          >
+            ✨ Jai Shri Krishna ✨
+          </span>
+          <div className="h-px w-12 bg-linear-to-l from-transparent to-gold/70" />
+        </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
+        {/* Main Heading */}
+        <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: 0.9, ease: "easeOut" }}
+          className="font-serif font-bold text-white leading-tight mb-4"
+          style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
         >
-          {/* Badge */}
-          <motion.span
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="inline-block py-1 px-4 rounded-full bg-white/10 border border-gold/40 text-gold text-sm font-semibold tracking-widest mb-6 backdrop-blur-sm"
+          Welcome to the Sacred
+          <br />
+          <span
+            className="relative inline-block"
+            style={{
+              background:
+                "linear-gradient(135deg, #ff9933 0%, #ffd700 40%, #ff9933 70%, #ffd700 100%)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "shimmer 3s linear infinite",
+            }}
           >
-            ✨ JAI SHRI KRISHNA ✨
-          </motion.span>
+            Land of Braj
+          </span>
+        </motion.h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-serif font-bold text-white leading-tight mb-6"
-          >
-            Welcome to the <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-saffron via-gold to-saffron animate-pulse">
-              Land of Braj
-            </span>
-          </motion.h1>
+        {/* Sanskrit line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.65, duration: 0.7 }}
+          className="text-base font-semibold tracking-[0.18em] mb-4 italic"
+          style={{ color: "#7ab2b2" }}
+        >
+          — Vrindavan · Mathura · Govardhan · Barsana —
+        </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-lg sm:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            Experience the divine vibes of Vrindavan, Mathura, and Barsana.
-            Let us guide you on a spiritual journey through the sacred leela
-            sthalis of Lord Krishna.
-          </motion.p>
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.7 }}
+          className="text-base sm:text-lg text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
+          Embark on a divine journey through the sacred leela sthalis of Lord
+          Krishna. Curated yatra packages crafted for a deeply spiritual
+          experience.
+        </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
+        >
+          {/* Primary */}
+          <Link
+            href="/packages"
+            className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-bold text-white text-base overflow-hidden transition-all duration-300 hover:scale-105"
+            style={{
+              background:
+                "linear-gradient(135deg, #ff9933 0%, #ffd700 50%, #ff9933 100%)",
+              backgroundSize: "200% auto",
+              boxShadow:
+                "0 8px 30px rgba(255,153,51,0.45), 0 0 0 0 rgba(255,153,51,0)",
+            }}
           >
-            <Link
-              href="/packages"
-              className="group px-8 py-4 bg-saffron text-white rounded-full font-bold text-lg shadow-lg shadow-saffron/30 hover:shadow-saffron/60 transform hover:scale-105 transition-all duration-300 flex items-center gap-2 border-2 border-transparent hover:border-gold"
-            >
-              Explore Packages
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/about"
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-bold text-lg hover:bg-white/25 transition-all duration-300 border border-white/30 hover:border-white"
-            >
-              Learn More
-            </Link>
-          </motion.div>
+            <span className="relative z-10">Explore Packages</span>
+            <ArrowRight className="h-5 w-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            {/* shimmer overlay */}
+            <motion.span
+              className="absolute inset-0 opacity-0 group-hover:opacity-100"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
+                backgroundSize: "200% 100%",
+              }}
+              animate={{ backgroundPosition: ["-200% center", "200% center"] }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
+            />
+          </Link>
+
+          {/* Secondary */}
+          <Link
+            href="/book"
+            className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-bold text-base transition-all duration-300 hover:scale-105"
+            style={{
+              background: "rgba(255,255,255,0.08)",
+              border: "1.5px solid rgba(255,255,255,0.28)",
+              color: "white",
+              backdropFilter: "blur(12px)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "rgba(255,255,255,0.18)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                "rgba(255,215,0,0.6)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "rgba(255,255,255,0.08)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                "rgba(255,255,255,0.28)";
+            }}
+          >
+            Book Yatra
+          </Link>
         </motion.div>
-      </div>
 
-      {/* Bottom scroll indicator */}
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.25, duration: 0.7 }}
+          className="flex items-center justify-center flex-wrap"
+          style={{
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            paddingTop: "1.5rem",
+            marginTop: "0.5rem",
+          }}
+        >
+          {stats.map(({ icon: Icon, value, label }, i) => (
+            <div key={label} className="flex items-center">
+              <div
+                className="flex flex-col items-center px-6 sm:px-10 py-2"
+                style={{
+                  borderRight:
+                    i < stats.length - 1
+                      ? "1px solid rgba(255,255,255,0.12)"
+                      : "none",
+                }}
+              >
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <Icon className="h-4 w-4" style={{ color: "#ffd700" }} />
+                  <span className="text-xl font-bold text-white">{value}</span>
+                </div>
+                <span
+                  className="text-xs tracking-widest uppercase"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
+                  {label}
+                </span>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* ── Scroll Indicator ── */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60"
-        animate={{ y: [0, 12, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.5 }}
       >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+        <motion.p
+          className="text-[10px] tracking-[0.3em] uppercase"
+          style={{ color: "rgba(255,255,255,0.4)" }}
+          animate={{ opacity: [0.4, 0.8, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          Scroll
+        </motion.p>
+        <motion.div
+          className="w-5 h-8 rounded-full flex justify-center pt-1.5"
+          style={{ border: "1.5px solid rgba(255,255,255,0.2)" }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
           <motion.div
-            className="w-1 h-3 bg-gold rounded-full"
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ repeat: Infinity, duration: 2 }}
+            className="w-0.5 h-2 rounded-full"
+            style={{
+              background: "linear-gradient(to bottom, #ffd700, transparent)",
+            }}
+            animate={{ opacity: [0.5, 1, 0.5], scaleY: [0.8, 1.2, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity }}
           />
-        </div>
-        <p className="text-xs mt-2 tracking-widest opacity-60">SCROLL</p>
+        </motion.div>
       </motion.div>
     </div>
   );

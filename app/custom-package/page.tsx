@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { packages } from "../../data/packagesData";
 import { motion, AnimatePresence } from "framer-motion";
@@ -299,16 +298,14 @@ export default function CustomPackagePage() {
 
   // ─── Render ────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
-
+    <div className="min-h-screen bg-theme">
       {/* ── Hero Header ── */}
-      <section className="relative h-72 flex items-center justify-center text-white overflow-hidden">
+      <section className="relative h-60 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/gallarypic/prem%20mandir.webp"
             alt="Custom Package"
-            className="w-full h-full object-cover opacity-35 dark:opacity-20"
+            className="w-full h-full object-cover blur-xs"
           />
           <div className="absolute inset-0 bg-[#09637E]/85 dark:bg-[#020810]/90" />
         </div>
@@ -331,7 +328,7 @@ export default function CustomPackagePage() {
           transition={{ duration: 0.7 }}
           className="relative z-10 text-center px-4"
         >
-          <span className="inline-block py-1 px-4 rounded-full bg-white/10 border border-gold/30 text-gold text-xs font-semibold tracking-widest mb-4">
+          <span className="inline-block py-1 px-4 rounded-full bg-surface border border-gold/30 text-gold text-xs font-semibold tracking-widest mb-4">
             ✦ BUILD YOUR OWN YATRA ✦
           </span>
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-2 text-gold drop-shadow-lg">
@@ -489,7 +486,7 @@ export default function CustomPackagePage() {
                   }}
                 >
                   {/* Top accent bar */}
-                  <div className="h-1 bg-gradient-to-r from-saffron via-gold to-saffron" />
+                  <div className="h-1 bg-linear-to-r from-saffron via-gold to-saffron" />
 
                   <div className="p-6 md:p-8">
                     {/* ── Step 1: Package Selection ── */}

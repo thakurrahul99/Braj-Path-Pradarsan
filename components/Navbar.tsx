@@ -55,7 +55,7 @@ export default function Navbar() {
             ? "linear-gradient(135deg, #0f172a 0%, #1a1035 40%, #0f172a 100%)"
             : "linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 100%)"
           : scrolled
-            ? "rgba(255, 252, 245, 0.88)"
+            ? "var(--nav-bg)"
             : "rgba(255, 255, 255, 0.12)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
@@ -115,7 +115,7 @@ export default function Navbar() {
                   className="font-bold text-lg transition-colors duration-300"
                   style={{
                     fontFamily: "var(--font-cursive)",
-                    color: isDark ? "#ffffff" : "#09637e",
+                    color: isDark ? "#ffffff" : "var(--section-dark)",
                   }}
                 >
                   Braj Path
@@ -142,21 +142,39 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.07 }}
+                  whileHover={{
+                    y: -3,
+                    scale: 1.06,
+                    transition: { duration: 0.2, ease: "easeOut" },
+                  }}
+                  style={{ transformStyle: "preserve-3d" }}
                 >
                   <Link
                     href={link.href}
-                    className="relative px-4 py-2 text-sm font-semibold tracking-wide group flex items-center gap-1"
+                    className="relative px-4 py-2 text-sm font-semibold tracking-wide group flex items-center gap-1 rounded-lg transition-shadow duration-200"
                     style={{
                       color: isActive
                         ? isDark ? "#ffd700" : "#b84d00"
-                        : isDark ? "rgba(255,255,255,0.85)" : "rgba(20,10,0,0.80)"
+                        : isDark ? "rgba(255,255,255,0.85)" : "rgba(20,10,0,0.80)",
                     }}
                   >
-                    {/* Hover background pill */}
+                    {/* Glassy pill bg — visible in both light & dark */}
                     <motion.span
-                      className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100"
-                      style={{ background: "rgba(255,255,255,0.07)" }}
-                      layoutId={`hoverBg-${link.name}`}
+                      className="absolute inset-0 rounded-lg"
+                      style={{
+                        background: isDark
+                          ? "rgba(255,255,255,0.06)"
+                          : "rgba(255,255,255,0.55)",
+                        border: isDark
+                          ? "1px solid rgba(255,255,255,0.10)"
+                          : "1px solid rgba(255,255,255,0.75)",
+                        backdropFilter: "blur(8px)",
+                        WebkitBackdropFilter: "blur(8px)",
+                        boxShadow: isDark
+                          ? "0 2px 10px rgba(0,0,0,0.18)"
+                          : "0 2px 10px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9)",
+                        opacity: 1,
+                      }}
                       transition={{ duration: 0.2 }}
                     />
 

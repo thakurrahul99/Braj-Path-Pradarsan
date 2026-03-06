@@ -17,11 +17,12 @@ interface PackageCardProps {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 32, rotateX: -10 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: "easeOut" as const },
+    rotateX: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
@@ -39,21 +40,34 @@ export default function PackageCard({
   return (
     <motion.div
       variants={cardVariants}
-      whileHover={{ y: -8, transition: { duration: 0.25 } }}
-      className="group relative rounded-2xl overflow-hidden flex flex-col h-full"
+      whileHover={{
+        y: -12,
+        rotateY: 3,
+        scale: 1.02,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
+      className="group relative rounded-2xl overflow-hidden flex flex-col h-full card-3d glow-ring"
       style={{
         background: "var(--surface)",
         boxShadow: "var(--card-shadow)",
         border: "1px solid var(--border)",
+        transformStyle: "preserve-3d",
       }}
     >
-      {/* Shimmer on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none z-10 rounded-2xl transition-opacity duration-300"
+      {/* Animated shimmer on hover */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-10 rounded-2xl opacity-0 group-hover:opacity-100"
         style={{
           background:
-            "linear-gradient(135deg, rgba(255,215,0,0.06) 0%, transparent 60%)",
+            "linear-gradient(135deg, rgba(255,215,0,0.07) 0%, rgba(255,153,51,0.04) 50%, transparent 100%)",
         }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Left accent glow line */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-0.5 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+        style={{ background: "linear-gradient(to bottom, #ff9933, #ffd700, transparent)" }}
       />
 
       {/* Image + Badges */}
@@ -62,14 +76,22 @@ export default function PackageCard({
           src={image}
           alt={title}
           className="w-full h-full object-cover"
-          whileHover={{ scale: 1.07 }}
-          transition={{ duration: 0.5 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         />
+
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+
         {/* Discount Badge */}
         {discountBadge && (
-          <div className="absolute top-3 left-3 bg-linear-to-br from-saffron to-gold text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20 border-2 border-white/70">
+          <motion.div
+            className="absolute top-3 left-3 bg-linear-to-br from-yellow-700 to-yellow-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg z-20 border-2 border-white/70"
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
             {discountBadge}
-          </div>
+          </motion.div>
         )}
         {/* Visual Tag */}
         {visualTag && (
@@ -77,7 +99,7 @@ export default function PackageCard({
             {visualTag}
           </div>
         )}
-        {/* Duration pill (moved below badges) */}
+        {/* Duration pill */}
         <div
           className="absolute top-12 right-3 flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-white backdrop-blur-sm"
           style={{
@@ -88,8 +110,6 @@ export default function PackageCard({
           <Clock size={11} />
           {duration}
         </div>
-        {/* Gradient overlay at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-black/40 to-transparent" />
       </div>
 
       {/* Content */}
@@ -142,7 +162,7 @@ export default function PackageCard({
           {/* View Details button */}
           <Link
             href={`/packages/${slug}`}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 shrink-0"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 shrink-0 hover:scale-105 hover:shadow-lg"
             style={{
               background: "linear-gradient(135deg, #ff9933, #ffd700)",
               color: "white",
@@ -150,16 +170,16 @@ export default function PackageCard({
             }}
           >
             View Details
-            <ArrowRight size={14} />
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
         {/* Secondary Book button */}
         <Link
           href="/book"
-          className="w-full text-center py-2.5 rounded-xl text-sm font-bold border-2 border-saffron text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+          className="w-full text-center py-2.5 rounded-xl text-sm font-bold border-2 border-saffron text-saffron hover:bg-yellow-500 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-saffron/30"
         >
-          🙏 Book Now
+          Book Now
         </Link>
       </div>
     </motion.div>

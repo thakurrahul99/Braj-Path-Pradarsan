@@ -63,7 +63,7 @@ export default function Footer() {
             <h3 className="text-2xl font-serif font-bold text-saffron">
               Braj Path Pradarshak
             </h3>
-            <p className="text-gray-400 leading-relaxed text-sm">
+            <p className="leading-relaxed text-sm" style={{ color: "white" }}>
               Your spiritual guide to the holy land of Braj. Experience the
               divine love of Radha and Krishna through our curated yatra
               packages.
@@ -90,9 +90,10 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group text-gray-400 hover:text-saffron transition-colors duration-300 flex items-center gap-2 text-sm"
+                    className="group group-hover:text-yellow-500 transition-colors duration-300 flex items-center gap-2 text-sm"
+                    style={{ color: "white" }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-saffron/40 group-hover:bg-saffron transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-saffron/40 group-hover:bg-yellow-500 transition-colors" />
                     {link.label}
                   </Link>
                 </li>
@@ -118,9 +119,10 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2 text-gray-400 hover:text-saffron transition-colors duration-300 text-sm"
+                    className="group flex items-center gap-2 hover:text-yellow-500 transition-colors duration-300 text-sm"
+                    style={{ color: "white" }}
                   >
-                    <Icon className="h-4 w-4 text-saffron shrink-0" />
+                    <Icon className="h-4 w-4 text-yellow-500 shrink-0" />
                     <span>{label}</span>
                     <Download className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
@@ -145,11 +147,13 @@ export default function Footer() {
                 { Icon: MapPin, text: "Goverdhan, Mathura, UP, India" },
                 { Icon: Phone, text: "+91 9639591697" },
                 { Icon: Phone, text: "+91 7078117174" },
+                // { Icon: Phone, text: "+91 7302579088" },
                 { Icon: Mail, text: "brajpathpradarshak@gmail.com" },
               ].map(({ Icon, text }) => (
                 <li
                   key={text}
-                  className="flex items-center space-x-3 text-gray-400 text-sm"
+                  className="flex items-center space-x-3 text-sm"
+                  style={{ color: "white" }}
                 >
                   <Icon className="h-4 w-4 text-saffron shrink-0" />
                   <span>{text}</span>
@@ -166,7 +170,7 @@ export default function Footer() {
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white/10 p-2.5 rounded-full hover:bg-saffron hover:text-deep-blue transition-all duration-300 text-white"
+                  className="bg-white/10 p-2.5 rounded-full hover:bg-yellow-500 hover:text-deep-blue transition-all duration-300 text-white"
                 >
                   <Icon className="h-4 w-4" />
                 </motion.a>
@@ -176,7 +180,7 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-white/10 pt-6 mt-6 text-center text-gray-500 text-sm">
+        <div className="border-t border-white/10 pt-6 mt-6 text-center text-sm" style={{ color: "var(--text-subtle)" }}>
           <p>
             © {new Date().getFullYear()} Braj Path Pradarshak. All rights
             reserved. <span className="text-gold">Jai Shri Krishna 🙏</span>

@@ -2,9 +2,9 @@
 
 import { notFound } from "next/navigation";
 import { use } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { getPackageBySlug } from "@/data/packagesData";
+import Footer from "@/components/Footer";
+
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -55,8 +55,6 @@ export default function PackageDetailPage({
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
-
       {/* ── Hero Banner ── */}
       <section className="relative h-[70vh] min-h-[480px] overflow-hidden">
         <motion.img
@@ -647,7 +645,7 @@ export default function PackageDetailPage({
 
                   <Link
                     href="/book"
-                    className="flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-sm border-2 border-saffron text-saffron hover:bg-saffron hover:text-white transition-all duration-300"
+                    className="flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-sm border-2 border-saffron text-saffron hover:bg-yellow-500 hover:text-white transition-all duration-300"
                   >
                     Fill Booking Form
                   </Link>

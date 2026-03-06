@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
@@ -47,10 +46,8 @@ export default function BookPage() {
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
-
       {/* ── Page Header ── */}
-      <section className="relative pt-32 pb-12 px-4 overflow-hidden bg-[var(--section-dark)] text-white text-center">
+      <section className="relative pt-12 pb-12 px-4 overflow-hidden bg-[var(--section-dark)] text-white text-center">
         <motion.div
           className="absolute -top-16 -right-16 w-72 h-72 rounded-full opacity-10 pointer-events-none"
           style={{

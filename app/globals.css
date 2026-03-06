@@ -1,17 +1,6 @@
 @import "tailwindcss";
 
-@theme {
-  --color-saffron: #ff9933;
-  --color-peacock: #1c39bb;
-  --color-gold: #ffd700;
-  --color-cream: #fff8e7;
-  --color-deep-blue: #0f172a;
-
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
-  --font-script: var(--font-caveat);
-  --font-rubik: var(--font-rubik);
-}
+/* Color variables are defined in :root and .dark below */
 
 /* ── Light theme ──────────────────────────────────────────── */
 :root {
@@ -23,12 +12,16 @@
   --text: #0d3340;
   --text-muted: #4a7a8a;
   --text-subtle: #7ab2b2;
-  --nav-bg: rgba(235, 244, 246, 0.95);
-  --card-shadow: 0 4px 24px rgba(9, 99, 126, 0.10);
+  --nav-bg: rgba(235, 244, 246, 0.85);
+  --card-shadow: 0 4px 24px rgba(9, 99, 126, 0.1);
   --input-bg: #f2fafc;
   --input-border: #7ab2b2;
   --section-dark: #09637e;
   --footer-bg: #0f172a;
+  /* Glass / Blur utilities */
+  --glass: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --card-hover-glow: rgba(9, 99, 126, 0.14);
   /* WhatsApp Floating Window Theme */
   --wa-float-bg: var(--surface);
   --wa-float-text: var(--text);
@@ -47,12 +40,16 @@
   --text: #f1f5f9;
   --text-muted: #94a3b8;
   --text-subtle: #64748b;
-  --nav-bg: #071828;
+  --nav-bg: rgba(7, 24, 40, 0.9);
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.5);
   --input-bg: #0f172a;
   --input-border: #334155;
   --section-dark: #071828;
   --footer-bg: #020810;
+  /* Glass / Blur utilities */
+  --glass: rgba(30, 41, 59, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --card-hover-glow: rgba(122, 178, 178, 0.12);
 }
 
 /* ── Smooth transitions globally ─────────────────────────── */
@@ -77,6 +74,42 @@ body {
 }
 
 /* ── Utility classes for theme-aware colors ───────────────── */
+.bg-saffron {
+  background: #ff9933;
+}
+.shadow-saffron\/30 {
+  box-shadow: 0 4px 24px rgba(255, 153, 51, 0.3);
+}
+.hover\:bg-gold:hover {
+  background: #ffd700;
+}
+.hover\:text-deep-blue:hover {
+  color: #0f172a;
+}
+.border-saffron {
+  border-color: #ff9933;
+}
+.hover\:text-white:hover {
+  color: #fff;
+}
+.text-saffron {
+  color: #ff9933;
+}
+.text-gold {
+  color: #ffd700;
+}
+.bg-gold {
+  background: #ffd700;
+}
+.bg-gold\/10 {
+  background: rgba(255, 215, 0, 0.1);
+}
+.border-gold\/30 {
+  border-color: rgba(255, 215, 0, 0.3);
+}
+.text-saffron\/80 {
+  color: rgba(255, 153, 51, 0.8);
+}
 .bg-theme {
   background: var(--bg);
 }
@@ -131,7 +164,6 @@ body {
 
 /* ── Glow animations ──────────────────────────────────────── */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -143,7 +175,6 @@ body {
 }
 
 @keyframes pulseGlow {
-
   0%,
   100% {
     opacity: 0.4;
@@ -167,7 +198,6 @@ body {
 }
 
 @keyframes sparkle {
-
   0%,
   100% {
     opacity: 0;
@@ -189,10 +219,276 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.15) 50%,
-      transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
   background-size: 200% auto;
   animation: shimmer 2s linear infinite;
+}
+
+/* ── Background Animated Blobs ───────────────────────────── */
+@keyframes blobDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+}
+
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: blobDrift 13s ease-in-out infinite alternate;
+}
+
+/* Light mode blob opacity */
+:root .blob {
+  opacity: 0.14;
+}
+
+/* Dark mode blob opacity */
+.dark .blob {
+  opacity: 0.22;
+}
+
+.blob-teal {
+  width: 520px;
+  height: 520px;
+  background: #09637e;
+  top: -120px;
+  left: -120px;
+  animation-delay: 0s;
+}
+
+.blob-saffron {
+  width: 420px;
+  height: 420px;
+  background: #ff9933;
+  top: 30vh;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+.blob-gold {
+  width: 360px;
+  height: 360px;
+  background: #7ab2b2;
+  bottom: -60px;
+  left: 35%;
+  animation-delay: -9s;
+}
+
+/* ── Glassmorphism Card Utility ──────────────────────────── */
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ── 3D Perspective Tilt Card ────────────────────────────── */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: box-shadow 0.4s ease;
+}
+
+.card-3d:hover {
+  box-shadow:
+    8px 16px 36px rgba(9, 99, 126, 0.18),
+    0 0 0 1px rgba(255, 153, 51, 0.1);
+}
+
+.dark .card-3d:hover {
+  box-shadow:
+    8px 16px 36px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 215, 0, 0.15);
+}
+
+/* ── 3D Float (deep) ─────────────────────────────────────── */
+@keyframes float3d {
+  0% {
+    transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
+  }
+
+  33% {
+    transform: translateY(-14px) rotateX(4deg) rotateZ(1deg);
+  }
+
+  66% {
+    transform: translateY(-8px) rotateX(-2deg) rotateZ(-1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
+  }
+}
+
+.animate-float3d {
+  animation: float3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* ── Glow Ring (subtle box-shadow only, no rotating border) ── */
+.glow-ring {
+  position: relative;
+}
+
+.glow-ring:hover {
+  box-shadow:
+    0 0 0 1.5px rgba(255, 153, 51, 0.25),
+    0 8px 32px rgba(9, 99, 126, 0.18);
+}
+
+/* ── 3D Depth Shadow on hover ────────────────────────────── */
+@keyframes depthPop {
+  0% {
+    transform: translateZ(0) scale(1);
+  }
+
+  100% {
+    transform: translateZ(20px) scale(1.04);
+  }
+}
+
+/* ── Spinning Mandala / Om decoration ───────────────────── */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 18s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 12s linear infinite;
+}
+
+/* ── Parallax Tilt (light) ───────────────────────────────── */
+@keyframes tiltWave {
+  0%,
+  100% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+
+  50% {
+    transform: perspective(600px) rotateY(3deg);
+  }
+}
+
+.animate-tilt {
+  animation: tiltWave 5s ease-in-out infinite;
+}
+
+/* ── Gradient Border animate ─────────────────────────────── */
+@keyframes borderRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.border-animate {
+  background: linear-gradient(
+    270deg,
+    #ff9933,
+    #ffd700,
+    #09637e,
+    #7ab2b2,
+    #ff9933
+  );
+  background-size: 300% 300%;
+  animation: borderRotate 4s ease infinite;
+}
+
+/* ── Rise Up (section reveal) ────────────────────────────── */
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-rise {
+  animation: riseUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* ── Icon Bounce ─────────────────────────────────────────── */
+@keyframes iconBounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  40% {
+    transform: translateY(-8px) scale(1.1);
+  }
+
+  60% {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+.animate-icon-bounce:hover {
+  animation: iconBounce 0.6s ease;
+}
+
+/* ── Glitter Sparkle on element ──────────────────────────── */
+@keyframes glitterPop {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px 6px rgba(255, 215, 0, 0.35),
+      0 0 32px 10px rgba(255, 153, 51, 0.15);
+  }
+}
+
+.animate-glitter {
+  animation: glitterPop 2.5s ease-in-out infinite;
 }

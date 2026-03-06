@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import PackageCard from "../../components/PackageCard";
 import { packages } from "@/data/packagesData";
@@ -9,25 +8,30 @@ import { motion } from "framer-motion";
 export default function PackagesPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
-
       {/* Hero Banner */}
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--section-dark)]">
-        <motion.div
+      <section className="relative pt-10 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--section-dark)]">
+        <div className="absolute inset-0">
+          <img
+            src="/krishnaeyes.jpg"
+            alt="Spiritual Background"
+            className="w-full h-full object-cover blur-md"
+          />
+        </div>
+        {/* <motion.div
           className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
           style={{
             background: "radial-gradient(circle, #ffd700, transparent)",
           }}
           animate={{ scale: [1, 1.15, 1], rotate: [0, 15, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
-        />
+        /> */}
         <motion.div
           className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10 pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, #ff9933, transparent)",
-          }}
-          animate={{ scale: [1.1, 1, 1.1] }}
-          transition={{ duration: 6, repeat: Infinity }}
+          // style={{
+          //   background: "radial-gradient(circle, #ff9933, transparent)",
+          // }}
+          // animate={{ scale: [1.1, 1, 1.1] }}
+          // transition={{ duration: 6, repeat: Infinity }}
         />
 
         <motion.div

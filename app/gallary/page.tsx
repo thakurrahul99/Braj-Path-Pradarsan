@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
 import { Camera, Heart, MapPin, Eye } from "lucide-react";
 
 const GalleryPage = () => {
@@ -176,9 +175,8 @@ const GalleryPage = () => {
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
-      <Navbar />
       {/* --- Spiritual Header --- */}
-      <section className="relative py-24 text-center overflow-hidden">
+      <section className="relative pt-12 pb-16 text-center overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <img
             src="/bansiforgallary.png"

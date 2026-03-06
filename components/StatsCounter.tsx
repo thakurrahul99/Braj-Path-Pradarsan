@@ -7,9 +7,10 @@ import { Users, Package, MapPin, Star } from "lucide-react";
 const stats = [
     { icon: Users, value: 500, suffix: "+", label: "Happy Pilgrims", color: "#ff9933" },
     { icon: Package, value: 6, suffix: "", label: "Curated Packages", color: "#ffd700" },
-    { icon: MapPin, value: 15, suffix: "+", label: "Sacred Destinations", color: "#1c39bb" },
+    { icon: MapPin, value: 15, suffix: "+", label: "Sacred Destinations", color: "#7ab2b2" },
     { icon: Star, value: 4.9, suffix: "★", label: "Average Rating", color: "#16a34a", decimal: true },
 ];
+
 
 function AnimatedNumber({ target, suffix, decimal }: { target: number; suffix: string; decimal?: boolean }) {
     const [count, setCount] = useState(0);
@@ -45,17 +46,33 @@ export default function StatsCounter() {
     return (
         <section
             ref={ref}
-            className="py-14 px-4 sm:px-6 lg:px-8"
-            style={{ background: "var(--surface-2)" }}
+            className="py-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+            style={{ background: "var(--section-dark)" }}
         >
+            {/* Animated background rings */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div
+                    className="animate-spin-slow absolute -top-20 -left-20 w-72 h-72 rounded-full border-2 opacity-10"
+                    style={{ borderColor: "#ffd700" }}
+                />
+                <div
+                    className="animate-spin-reverse absolute -bottom-16 -right-16 w-56 h-56 rounded-full border-2 opacity-10"
+                    style={{ borderColor: "#ff9933" }}
+                />
+                <div
+                    className="animate-spin-slow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border opacity-5"
+                    style={{ borderColor: "#7ab2b2", animationDuration: "25s" }}
+                />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="max-w-5xl mx-auto"
+                className="max-w-5xl mx-auto relative z-10"
             >
                 {/* Section label */}
-                <p className="text-center text-xs font-semibold tracking-widest uppercase text-saffron mb-8">
+                <p className="text-center text-xs font-semibold tracking-widest uppercase mb-8" style={{ color: "#ffd700" }}>
                     ✦ Trusted by Devotees Across India ✦
                 </p>
 
@@ -63,21 +80,28 @@ export default function StatsCounter() {
                     {stats.map(({ icon: Icon, value, suffix, label, color, decimal }, i) => (
                         <motion.div
                             key={label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: i * 0.1, duration: 0.5 }}
-                            className="flex flex-col items-center text-center p-6 rounded-2xl group cursor-default"
+                            initial={{ opacity: 0, y: 30, rotateX: -15 }}
+                            animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                            transition={{ delay: i * 0.12, duration: 0.6, ease: "easeOut" }}
+                            whileHover={{
+                                y: -8,
+                                rotateY: 5,
+                                scale: 1.05,
+                                transition: { duration: 0.25 }
+                            }}
+                            className="flex flex-col items-center text-center p-6 rounded-2xl group cursor-default card-3d glow-ring"
                             style={{
-                                background: "var(--surface)",
-                                boxShadow: "var(--card-shadow)",
-                                border: "1px solid var(--border)",
+                                background: "rgba(255,255,255,0.07)",
+                                backdropFilter: "blur(12px)",
+                                border: "1px solid rgba(255,255,255,0.12)",
+                                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
                             }}
                         >
                             <motion.div
-                                className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
-                                style={{ background: `${color}18` }}
-                                whileHover={{ scale: 1.12, rotate: 6 }}
-                                transition={{ type: "spring", stiffness: 300 }}
+                                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 animate-icon-bounce"
+                                style={{ background: `${color}22`, border: `1.5px solid ${color}44` }}
+                                animate={{ rotateZ: [0, 5, -5, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
                             >
                                 <Icon className="w-7 h-7" style={{ color }} />
                             </motion.div>
@@ -92,7 +116,7 @@ export default function StatsCounter() {
 
                             <span
                                 className="text-sm font-medium mt-1"
-                                style={{ color: "var(--text-muted)" }}
+                                style={{ color: "rgba(255,255,255,0.75)" }}
                             >
                                 {label}
                             </span>

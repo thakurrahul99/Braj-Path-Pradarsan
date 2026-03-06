@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="hi" data-mode="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Braj Path Pradarsan — Color Palette</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── CSS Variables ───────────────────────────────── */
+        [data-mode="light"] {
+            --bg: #ebf4f6;
+            --bg-alt: #d9ecf0;
+            --surface: #ffffff;
+            --surface-2: #dff0f4;
+            --border: rgba(9, 99, 126, 0.15);
+            --text: #0d3340;
+            --text-muted: #4a7a8a;
+            --text-subtle: #7ab2b2;
+            --nav-bg: rgba(235, 244, 246, 0.85);
+            --input-bg: #f2fafc;
+            --input-border: #7ab2b2;
+            --section-dark: #09637e;
+            --footer-bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --hero-grad: linear-gradient(135deg, #09637e 0%, #1a8fa8 50%, #7ab2b2 100%);
+            --card-hover-glow: rgba(9, 99, 126, 0.15);
+        }
+
+        [data-mode="dark"] {
+            --bg: #0b1120;
+            --bg-alt: #111827;
+            --surface: #1e293b;
+            --surface-2: #162032;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+            --nav-bg: rgba(7, 24, 40, 0.9);
+            --input-bg: #0f172a;
+            --input-border: #334155;
+            --section-dark: #071828;
+            --footer-bg: #020810;
+            --glass: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --hero-grad: linear-gradient(135deg, #020810 0%, #071828 50%, #0b1120 100%);
+            --card-hover-glow: rgba(122, 178, 178, 0.1);
+        }
+
+        /* ── Base ──────────────────────────────────────── */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* ── Animated Background Blobs ────────────────── */
+        .bg-blobs {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: blobDrift 12s ease-in-out infinite alternate;
+        }
+
+        [data-mode="light"] .blob {
+            opacity: 0.18;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: #09637e;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: #ff9933;
+            top: 200px;
+            right: -80px;
+            animation-delay: -4s;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: #7ab2b2;
+            bottom: -50px;
+            left: 30%;
+            animation-delay: -8s;
+        }
+
+        @keyframes blobDrift {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(40px, 30px) scale(1.08);
+            }
+        }
+
+        /* ── Navbar ────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0 32px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #ff9933, #ffd700);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(255, 153, 51, 0.35);
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .nav-logo-text span {
+            color: #ff9933;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mode-pill {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        .pill-opt {
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all 0.25s;
+            user-select: none;
+            color: var(--text-muted);
+        }
+
+        .pill-opt.active {
+            background: linear-gradient(135deg, #09637e, #1a8fa8);
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(9, 99, 126, 0.4);
+        }
+
+        /* ── Hero Section ──────────────────────────────── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            margin-top: 64px;
+            background: var(--hero-grad);
+            padding: 64px 32px 80px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 99px;
+            padding: 5px 18px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: #fff;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 span {
+            color: #ffd700;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1rem;
+            max-width: 460px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ── Main Content ──────────────────────────────── */
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 24px 80px;
+        }
+
+        /* ── Section Headers ───────────────────────────── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            border-radius: 99px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .badge-light {
+            background: linear-gradient(135deg, #ebf4f6, #d9ecf0);
+            color: #09637e;
+            border: 1.5px solid rgba(9, 99, 126, 0.3);
+        }
+
+        .badge-dark {
+            background: linear-gradient(135deg, #1e293b, #162032);
+            color: #94a3b8;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .badge-brand {
+            background: linear-gradient(135deg, #ff9933, #ffd700);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(255, 153, 51, 0.35);
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-title-group h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .section-title-group p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .section-title-group code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--surface-2);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #09637e;
+        }
+
+        [data-mode="dark"] .section-title-group code {
+            color: #7ab2b2;
+        }
+
+        /* ── Color Grid ────────────────────────────────── */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 14px;
+            margin-bottom: 60px;
+        }
+
+        .color-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1),
+                box-shadow 0.25s ease;
+            position: relative;
+        }
+
+        .color-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 48px var(--card-hover-glow), 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .swatch-wrap {
+            position: relative;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .swatch {
+            width: 100%;
+            height: 100%;
+            transition: filter 0.25s;
+        }
+
+        .color-card:hover .swatch {
+            filter: brightness(1.05);
+        }
+
+        .swatch-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .copy-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            border-radius: 99px;
+            padding: 3px 10px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .color-card:hover .copy-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-body {
+            padding: 12px 14px 14px;
+        }
+
+        .var-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.67rem;
+            color: var(--text-subtle);
+            margin-bottom: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .hex-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .hex-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .hex-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .usage-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ── Divider ───────────────────────────────────── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 0 0 56px;
+        }
+
+        /* ── Live Preview ──────────────────────────────── */
+        .preview-wrap {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-wrap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff9933, #ffd700, #09637e, #7ab2b2);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .p-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .p-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .p-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .p-card small {
+            font-size: 0.72rem;
+            color: var(--text-subtle);
+        }
+
+        .p-btn {
+            display: inline-block;
+            margin-top: 14px;
+            background: linear-gradient(135deg, #ff9933, #e07820);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 9px 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(255, 153, 51, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .p-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 153, 51, 0.5);
+        }
+
+        .p-input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1.5px solid var(--input-border);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 0.82rem;
+            color: var(--text);
+            margin-top: 12px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .p-input:focus {
+            border-color: #09637e;
+            box-shadow: 0 0 0 3px rgba(9, 99, 126, 0.15);
+        }
+
+        .p-section-dark {
+            background: var(--section-dark);
+            border-radius: 16px;
+            padding: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .p-section-dark h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .p-section-dark p {
+            font-size: 0.78rem;
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+
+        .p-footer {
+            background: var(--footer-bg);
+            border-radius: 16px;
+            padding: 18px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .p-footer h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #ffd700;
+        }
+
+        .p-footer p {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            line-height: 1.5;
+        }
+
+        /* ── Toast ─────────────────────────────────────── */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: linear-gradient(135deg, #0d3340, #09637e);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 9999;
+            box-shadow: 0 8px 32px rgba(9, 99, 126, 0.4);
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ── Responsive ────────────────────────────────── */
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 48px 20px 64px;
+            }
+
+            main {
+                padding: 16px 16px 60px;
+            }
+
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-wrap {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-logo">
+            <div class="nav-logo-icon">🕌</div>
+            <span class="nav-logo-text">Braj Path <span>Pradarsan</span></span>
+        </div>
+        <div class="nav-right">
+            <div class="mode-pill" onclick="toggleMode()">
+                <div class="pill-opt active" id="lightOpt">☀️ Light</div>
+                <div class="pill-opt" id="darkOpt">🌙 Dark</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-eyebrow">🎨 Design System</div>
+        <h1>Color <span>Palette</span></h1>
+        <p>website के सभी colors — Light & Dark दोनों modes में, एक जगह पर</p>
+    </div>
+
+    <!-- Main -->
+    <main>
+
+        <!-- ── Light Mode ─────────────────────────────── -->
+        <div class="section-header">
+            <span class="section-badge badge-light">☀️ Light</span>
+            <div class="section-title-group">
+                <h2>Light Mode Colors</h2>
+                <p>Defined in <code>:root</code> — Light theme पर यही colors दिखते हैं</p>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="color-grid" id="lightGrid">
+            <!-- JS se inject hoga -->
+        </div>
+
+        <hr class="divider" />
+
+        <!-- ── Dark Mode ──────────────────────────────── -->
+        <div class="section-header">
+            <span class="section-badge badge-dark">🌙 Dark</span>
+            <div class="section-title-group">
+                <h2>Dark Mode Colors</h2>
+                <p>Defined in <code>.dark</code> — Dark theme पर यही colors दिखते हैं</p>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="color-grid" id="darkGrid"></div>
+
+        <hr class="divider" />
+
+        <!-- ── Brand Colors ───────────────────────────── -->
+        <div class="section-header">
+            <span class="section-badge badge-brand">✨ Brand</span>
+            <div class="section-title-group">
+                <h2>Brand / Global Colors</h2>
+                <p>Light & Dark — दोनों modes में हमेशा same रहते हैं</p>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="color-grid" id="brandGrid"></div>
+
+        <hr class="divider" />
+
+        <!-- ── Live Preview ───────────────────────────── -->
+        <div class="section-header">
+            <span class="section-badge badge-brand"
+                style="background: linear-gradient(135deg,#09637e,#1a8fa8); box-shadow: 0 4px 14px rgba(9,99,126,0.35);">🖥️
+                Preview</span>
+            <div class="section-title-group">
+                <h2>Live Component Preview</h2>
+                <p>Colors actual website elements पर कैसे दिखते हैं</p>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="preview-wrap">
+            <div class="preview-grid">
+                <div class="p-card">
+                    <h3>Package Card</h3>
+                    <p>यह secondary text है जो muted color में होता है। Card का background <code
+                            style="font-size:0.72em;background:var(--surface-2);padding:1px 4px;border-radius:3px;color:var(--text-muted);">--surface</code>
+                        है।</p>
+                    <small>यह subtle/hint text है</small>
+                    <br />
+                    <button class="p-btn">📿 अभी बुक करें</button>
+                </div>
+                <div class="p-card">
+                    <h3>Contact Form</h3>
+                    <p>Input का background <code
+                            style="font-size:0.72em;background:var(--surface-2);padding:1px 4px;border-radius:3px;color:var(--text-muted);">--input-bg</code>
+                        है</p>
+                    <input class="p-input" type="text" placeholder="अपना नाम लिखें..." />
+                    <input class="p-input" type="email" placeholder="Email address..." />
+                </div>
+                <div class="p-section-dark">
+                    <h3>Dark Section</h3>
+                    <p>यह <code style="font-size:0.8em;opacity:0.8;">--section-dark</code> background है। इस पर white
+                        text use होता है। Hero sections और CTA areas में यह color आता है।</p>
+                </div>
+                <div class="p-footer">
+                    <h3>Footer Area</h3>
+                    <p>Footer का background <code style="font-size:0.8em;opacity:0.7;">--footer-bg</code> है — सबसे dark
+                        color। यहाँ gold heading और muted body text use होती है।</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="toast">✅ Copied!</div>
+
+    <script>
+        const lightColors = [
+            { v: '--bg', hex: '#ebf4f6', use: 'Main page background' },
+            { v: '--bg-alt', hex: '#d9ecf0', use: 'Cards / sections background' },
+            { v: '--surface', hex: '#ffffff', use: 'Card / modal surface' },
+            { v: '--surface-2', hex: '#dff0f4', use: 'Secondary surface' },
+            { v: '--text', hex: '#0d3340', use: 'Primary text color' },
+            { v: '--text-muted', hex: '#4a7a8a', use: 'Secondary / muted text' },
+            { v: '--text-subtle', hex: '#7ab2b2', use: 'Subtle / hint text' },
+            { v: '--nav-bg', hex: 'rgba(235,244,246,0.95)', use: 'Navbar background' },
+            { v: '--input-bg', hex: '#f2fafc', use: 'Input field background' },
+            { v: '--input-border', hex: '#7ab2b2', use: 'Input border color' },
+            { v: '--section-dark', hex: '#09637e', use: 'Dark teal section background' },
+            { v: '--footer-bg', hex: '#0f172a', use: 'Footer background' },
+        ];
+
+        const darkColors = [
+            { v: '--bg', hex: '#0b1120', use: 'Main page background' },
+            { v: '--bg-alt', hex: '#111827', use: 'Cards / sections background' },
+            { v: '--surface', hex: '#1e293b', use: 'Card / modal surface' },
+            { v: '--surface-2', hex: '#162032', use: 'Secondary surface' },
+            { v: '--text', hex: '#f1f5f9', use: 'Primary text (light)' },
+            { v: '--text-muted', hex: '#94a3b8', use: 'Secondary text' },
+            { v: '--text-subtle', hex: '#64748b', use: 'Subtle text' },
+            { v: '--nav-bg', hex: '#071828', use: 'Navbar background' },
+            { v: '--input-bg', hex: '#0f172a', use: 'Input field background' },
+            { v: '--input-border', hex: '#334155', use: 'Input border' },
+            { v: '--section-dark', hex: '#071828', use: 'Dark section background' },
+            { v: '--footer-bg', hex: '#020810', use: 'Footer background' },
+        ];
+
+        const brandColors = [
+            { v: '--color-saffron', hex: '#ff9933', use: 'Buttons, highlights, accent' },
+            { v: '--color-peacock', hex: '#1c39bb', use: 'Peacock blue accent' },
+            { v: '--color-gold', hex: '#ffd700', use: 'Gold / premium elements' },
+            { v: '--color-cream', hex: '#fff8e7', use: 'Warm cream backgrounds' },
+            { v: '--color-deep-blue', hex: '#0f172a', use: 'Deep navy base' },
+            { v: '--wa-float-btn', hex: '#25d366', use: 'WhatsApp button color' },
+        ];
+
+        function buildCard(c) {
+            const isLight = c.hex.startsWith('#f') || c.hex === '#ffffff' || c.hex === '#fff8e7' || c.hex.includes('235,244') || c.hex.includes('rgba(235');
+            return `
+        <div class="color-card" onclick="copyHex('${c.hex}')">
+          <div class="swatch-wrap">
+            <div class="swatch" style="background:${c.hex}"></div>
+            <div class="swatch-overlay"></div>
+            <div class="copy-tag">📋 Copy</div>
+          </div>
+          <div class="card-body">
+            <div class="var-name">${c.v}</div>
+            <div class="hex-row">
+              <span class="hex-val">${c.hex.length > 10 ? c.hex.substring(0, 14) + '…' : c.hex}</span>
+              <span class="hex-dot" style="background:${c.hex};"></span>
+            </div>
+            <div class="usage-label">${c.use}</div>
+          </div>
+        </div>`;
+        }
+
+        document.getElementById('lightGrid').innerHTML = lightColors.map(buildCard).join('');
+        document.getElementById('darkGrid').innerHTML = darkColors.map(buildCard).join('');
+        document.getElementById('brandGrid').innerHTML = brandColors.map(buildCard).join('');
+
+        // Mode toggle
+        let isDark = false;
+        function toggleMode() {
+            isDark = !isDark;
+            document.documentElement.setAttribute('data-mode', isDark ? 'dark' : 'light');
+            document.getElementById('lightOpt').classList.toggle('active', !isDark);
+            document.getElementById('darkOpt').classList.toggle('active', isDark);
+        }
+
+        // Copy
+        function copyHex(hex) {
+            navigator.clipboard.writeText(hex).then(() => {
+                const t = document.getElementById('toast');
+                t.textContent = `✅ Copied: ${hex}`;
+                t.classList.add('show');
+                clearTimeout(window._toastTimer);
+                window._toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+            });
+        }
+    </script>
+</body>
+
+</html>

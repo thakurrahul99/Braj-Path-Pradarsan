@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -156,13 +155,11 @@ const AboutUsPage = () => {
       className="min-h-screen font-sans"
       style={{ background: "var(--bg)" }}
     >
-      <Navbar />
-
       {/* ── Hero ── */}
       <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0 bg-deep-blue dark:bg-[#020810]">
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-deep-blue/60 to-transparent z-10" />
-          <div className="absolute inset-0 opacity-30 bg-[url('/peacock%20feather.webp')] bg-cover bg-center" />
+          <div className="absolute inset-0 opacity-50 bg-[url('/peacock%20feather.webp')] bg-cover bg-center blur-[3px]" />
         </div>
         {/* Floating orbs */}
         {[0, 1, 2].map((i) => (
@@ -194,10 +191,10 @@ const AboutUsPage = () => {
           <span className="inline-block py-1 px-4 rounded-full bg-white/10 border border-white/20 text-gold text-xs font-semibold tracking-widest mb-5 backdrop-blur-md">
             DISCOVER THE DIVINE
           </span>
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-r from-white via-gold to-white">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 drop-shadow-lg text-transparent bg-clip-text bg-linear-to-r from-white via-yellow-500 to-white">
             Braj Path Pradarshak
           </h1>
-          <p className="text-lg md:text-xl font-light text-gray-200 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl font-light text-white/80 max-w-2xl mx-auto leading-relaxed">
             "Guiding your soul through the sacred lanes of Braj, where every
             particle vibrates with devotion."
           </p>
@@ -547,9 +544,9 @@ const AboutUsPage = () => {
           </p>
           <a
             href="/packages"
-            className="inline-block bg-saffron hover:bg-orange-600 text-white font-bold py-4 px-12 rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:shadow-saffron/40"
+            className="inline-block bg-yellow-600 hover:bg-orange-600 text-white font-bold py-4 px-12 rounded-full transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:scale-110 hover:shadow-saffron/40"
           >
-            Browse Packages 🙏
+            Browse Packages 
           </a>
         </motion.div>
       </section>

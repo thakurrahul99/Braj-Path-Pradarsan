@@ -10,6 +10,7 @@ import {
 import "./globals.css";
 
 import WhatsAppFloating from "../components/WhatsAppFloating";
+import Navbar from "../components/Navbar";
 
 const cursiveFont = Great_Vibes({
   weight: "400",
@@ -56,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased bg-cream text-gray-900 font-sans`}
+        className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased font-sans`}
       >
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
@@ -82,6 +83,18 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        {/* Global animated background blobs */}
+        <div className="bg-blobs" aria-hidden="true">
+          <div className="blob blob-teal" />
+          <div className="blob blob-saffron" />
+          <div className="blob blob-gold" />
+        </div>
+
+        {/* Global Navbar — fixed at top */}
+        <Navbar />
+        {/* Spacer equal to navbar height so page content starts below it */}
+        <div aria-hidden="true" style={{ height: "72px" }} />
+
         {children}
         <WhatsAppFloating />
       </body>
