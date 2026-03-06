@@ -40,7 +40,7 @@ export default function Hero() {
         <img
           src="/herobg.jpeg"
           alt="Sacred Vrindavan"
-          className="w-full h-full object-cover scale-110 blur-[3px]"
+          className=" absolute w-[130%] md:w-[110%] lg:w-full h-full object-cover blur-[3px] object-[34%_center] md:object-[38%_center] lg:object-center"
         />
       </motion.div>
 
