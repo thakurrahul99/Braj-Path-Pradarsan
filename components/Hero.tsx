@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import NextImage from "next/image";
 import { ArrowRight, Star, Users, MapPin } from "lucide-react";
 import { useRef } from "react";
 
@@ -11,12 +12,13 @@ const stats = [
   { icon: MapPin, value: "15+", label: "Sacred Places" },
 ];
 
-const particles = Array.from({ length: 20 }, (_, i) => ({
+// Reduced to 8 particles to minimise non-composited animation work on mobile
+const particles = Array.from({ length: 8 }, (_, i) => ({
   id: i,
-  left: `${(i * 5.3 + 2) % 98}%`,
-  top: `${(i * 7.9 + 5) % 90}%`,
+  left: `${(i * 12.5 + 2) % 95}%`,
+  top: `${(i * 11.5 + 5) % 85}%`,
   duration: 3 + (i % 4),
-  delay: i * 0.3,
+  delay: i * 0.6,
   size: i % 3 === 0 ? "w-1.5 h-1.5" : "w-1 h-1",
 }));
 
@@ -33,14 +35,17 @@ export default function Hero() {
   return (
     <div
       ref={ref}
-      className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden mt-18 "
+      className="relative h-screen min-h-150 flex items-center justify-center overflow-hidden mt-18"
     >
       {/* ── Parallax Background Image ── */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <img
+        <NextImage
           src="/herobg.jpeg"
           alt="Sacred Vrindavan"
-          className=" absolute w-[130%] md:w-[110%] lg:w-full h-full object-cover blur-[3px] object-[34%_center] md:object-[38%_center] lg:object-center"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover blur-[3px] object-[34%_center] md:object-[38%_center] lg:object-center"
         />
       </motion.div>
 
@@ -87,6 +92,7 @@ export default function Hero() {
             top: p.top,
             background: p.id % 2 === 0 ? "#ffd700" : "#ff9933",
             boxShadow: `0 0 4px ${p.id % 2 === 0 ? "#ffd700" : "#ff9933"}`,
+            willChange: "transform, opacity",
           }}
           animate={{
             y: [0, -70, 0],

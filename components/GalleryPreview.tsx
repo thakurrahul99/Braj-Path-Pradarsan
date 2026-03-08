@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Camera } from "lucide-react";
 
 const photos = [
@@ -103,13 +104,19 @@ export default function GalleryPreview() {
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Image */}
-              <motion.img
-                src={src}
-                alt={label}
-                className="w-full h-full object-cover"
+              <motion.div
+                className="relative w-full h-full"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-              />
+              >
+                <Image
+                  src={src}
+                  alt={label}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </motion.div>
 
               {/* Cinematic hover overlay */}
               <div

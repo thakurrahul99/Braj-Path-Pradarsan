@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Clock, IndianRupee, ArrowRight } from "lucide-react";
 
 interface PackageCardProps {
@@ -44,7 +45,7 @@ export default function PackageCard({
         y: -12,
         rotateY: 3,
         scale: 1.02,
-        transition: { duration: 0.3, ease: "easeOut" }
+        transition: { duration: 0.3, ease: "easeOut" },
       }}
       className="group relative rounded-2xl overflow-hidden flex flex-col h-full card-3d glow-ring"
       style={{
@@ -72,13 +73,19 @@ export default function PackageCard({
 
       {/* Image + Badges */}
       <div className="relative h-52 overflow-hidden">
-        <motion.img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
+        <motion.div
+          className="relative w-full h-full"
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-        />
+        >
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
+          />
+        </motion.div>
 
         {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />

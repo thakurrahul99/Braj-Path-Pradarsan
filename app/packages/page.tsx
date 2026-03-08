@@ -14,7 +14,7 @@ export default function PackagesPage() {
           <img
             src="/krishnaeyes.jpg"
             alt="Spiritual Background"
-            className="w-full h-full object-cover blur-md"
+            className="w-full h-full object-cover blur-sm"
           />
         </div>
         {/* <motion.div

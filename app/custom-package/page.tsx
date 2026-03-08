@@ -305,9 +305,9 @@ export default function CustomPackagePage() {
           <img
             src="/gallarypic/prem%20mandir.webp"
             alt="Custom Package"
-            className="w-full h-full object-cover blur-xs"
+            className="w-full h-full object-cover blur-[2px]"
           />
-          <div className="absolute inset-0 bg-[#09637E]/85 dark:bg-[#020810]/90" />
+          <div className="absolute inset-0 bg-[#09637E]/85 dark:bg-[#020810]/70" />
         </div>
         {[...Array(10)].map((_, i) => (
           <motion.div

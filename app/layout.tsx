@@ -3,8 +3,6 @@ import Script from "next/script";
 import {
   Playfair_Display,
   Inter,
-  Caveat,
-  Rubik,
   Great_Vibes,
 } from "next/font/google";
 import "./globals.css";
@@ -28,17 +26,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const caveat = Caveat({
-  variable: "--font-caveat",
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
 
-const rubik = Rubik({
-  variable: "--font-rubik",
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Braj Path Pradarshak - Spiritual Journey to Vrindavan",
@@ -57,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${inter.variable} ${caveat.variable} ${rubik.variable} ${cursiveFont.variable} antialiased font-sans`}
+        className={`${playfair.variable} ${inter.variable} ${cursiveFont.variable} antialiased font-sans`}
       >
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
