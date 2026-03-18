@@ -276,7 +276,7 @@ export default function BookPage() {
                     type="submit"
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-saffron to-gold text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-saffron/40 transition-shadow"
+                    className="w-full bg-gradient-to-r from-yellow-600 to-yellow-400 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-saffron/40 transition-shadow"
                   >
                     🙏 Confirm Booking via WhatsApp
                   </motion.button>

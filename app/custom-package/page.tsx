@@ -1005,7 +1005,7 @@ export default function CustomPackagePage() {
                               type="text"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
-                              placeholder="e.g. Rahul Sharma"
+                              placeholder="e.g. Rahul Singh"
                               className={inputClass}
                               style={inputStyle}
                               required
@@ -1023,7 +1023,7 @@ export default function CustomPackagePage() {
                               type="tel"
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
-                              placeholder="+91 98765 43210"
+                              placeholder="+91 00000 00000"
                               className={inputClass}
                               style={inputStyle}
                               required

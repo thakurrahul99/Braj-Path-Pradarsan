@@ -13,7 +13,7 @@ import Navbar from "../components/Navbar";
 const cursiveFont = Great_Vibes({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-cursive", // CSS variable banayein
+  variable: "--font-cursive",
 });
 
 const playfair = Playfair_Display({
@@ -26,15 +26,34 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-
-
 export const metadata: Metadata = {
-  title: "Braj Path Pradarshak - Spiritual Journey to Vrindavan",
+  title: "Braj Path Pradarshak | Mathura Vrindavan Yatra Packages",
   description:
-    "Book your spiritual tour packages for Vrindavan, Mathura, and Barsana. Experience the land of Lord Krishna.",
+    "Mathura, Vrindavan, Govardhan aur Barsana ke liye curated pilgrimage packages. Expert Brajwasi guides, AC vehicles, ₹999 se shuru.",
   other: {
     "facebook-domain-verification": "e8a9dusm9r9keog93k0gibiqjfgicx",
   },
+};
+
+const travelAgencySchema = {
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  name: "Braj Path Pradarshak",
+  url: "https://www.brajpathpradarshak.com",
+  logo: "https://www.brajpathpradarshak.com/logo.png",
+  telephone: ["+91-9639591697", "+91-7078117174"],
+  email: "brajpathpradarshak@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Govardhan",
+    addressLocality: "Mathura",
+    addressRegion: "Uttar Pradesh",
+    postalCode: "281502",
+    addressCountry: "IN",
+  },
+  openingHours: "Mo-Su 09:00-20:00",
+  priceRange: "₹₹",
+  areaServed: ["Mathura", "Vrindavan", "Govardhan", "Barsana", "Nandgaon"],
 };
 
 export default function RootLayout({
@@ -47,6 +66,12 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} ${cursiveFont.variable} antialiased font-sans`}
       >
+        {/* TravelAgency Schema Markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
+        />
+
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

@@ -13,7 +13,7 @@ const stats = [
 
 
 function AnimatedNumber({ target, suffix, decimal }: { target: number; suffix: string; decimal?: boolean }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(target);
     const ref = useRef(null);
     const inView = useInView(ref, { once: true });
 
