@@ -146,7 +146,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { Icon: MapPin, text: "Goverdhan, Mathura, UP, India" },
-                { Icon: Phone, text: "+91 9639591697" },
+                { Icon: Phone, text: "+91 8755509932" },
                 { Icon: Phone, text: "+91 7078117174" },
                 // { Icon: Phone, text: "+91 7302579088" },
                 { Icon: Mail, text: "brajpathpradarshak@gmail.com" },

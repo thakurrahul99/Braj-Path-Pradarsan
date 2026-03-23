@@ -54,7 +54,7 @@ const ContactClient = () => {
     {
       Icon: Phone,
       label: "Phone & WhatsApp",
-      text: "+91 9639591697",
+      text: "+91 8755509932",
       subText: "+91 7078117174",
       sub: "Available 9:00 AM - 8:00 PM IST",
       bg: "rgba(34,197,94,0.12)",
