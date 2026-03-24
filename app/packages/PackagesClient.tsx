@@ -12,7 +12,7 @@ export default function PackagesClient() {
       <section className="relative pt-10 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[var(--section-dark)]">
         <div className="absolute inset-0">
           <img
-            src="/krishnaeyes.jpg"
+            src="/Krishnaeyes.jpg"
             alt="Spiritual Background"
             className="w-full h-full object-cover blur-sm"
           />
