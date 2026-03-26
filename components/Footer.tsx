@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, Heart, Clock, Download, BookOpen, Map } from "lucide-react";
+import { Facebook, Twitter, Instagram, Mail, Phone, MapPin, Heart, Clock, Download, BookOpen, Map, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 const quickLinks = [
@@ -11,6 +11,8 @@ const quickLinks = [
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact" },
 ];
+
+const GOOGLE_REVIEW_URL = "https://g.page/r/CSZMAA39DJ3iEBM/review";
 
 const socials = [
   {
@@ -99,6 +101,19 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              {/* Google Review Link */}
+              <li>
+                <a
+                  href={GOOGLE_REVIEW_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2 text-sm hover:text-yellow-400 transition-colors duration-300"
+                  style={{ color: "#facc15" }}
+                >
+                  <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400 shrink-0" />
+                  Rate us on Google
+                </a>
+              </li>
             </ul>
           </motion.div>
 

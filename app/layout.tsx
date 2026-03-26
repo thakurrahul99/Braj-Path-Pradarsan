@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 
 import WhatsAppFloating from "../components/WhatsAppFloating";
+import GoogleReviewFloating from "../components/GoogleReviewFloating";
 import Navbar from "../components/Navbar";
 
 const cursiveFont = Great_Vibes({
@@ -109,6 +110,7 @@ export default function RootLayout({
         <div aria-hidden="true" style={{ height: "72px" }} />
 
         {children}
+        <GoogleReviewFloating />
         <WhatsAppFloating />
       </body>
     </html>

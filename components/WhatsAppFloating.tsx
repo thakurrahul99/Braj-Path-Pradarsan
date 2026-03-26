@@ -21,7 +21,7 @@ export default function WhatsAppFloating() {
       style={{
         position: "fixed",
         bottom: "2rem",
-        right: "2rem",
+        right: "1.6rem",
         zIndex: 1000,
         border: "none",
         borderRadius: "50%",

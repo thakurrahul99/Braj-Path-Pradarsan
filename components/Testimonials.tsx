@@ -3,7 +3,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+
+// ⬇️ Apna Google Place ID yahan paste karo
+// Google Maps par apna business dhundo → Share → "Copy link" mein place_id= ke baad wala ID
+const GOOGLE_REVIEW_URL = "https://g.page/r/CSZMAA39DJ3iEBM/review";
 
 const testimonials = [
   {
@@ -241,9 +245,10 @@ export default function Testimonials() {
                   style={{
                     width: i === index ? 28 : 8,
                     height: 8,
-                    background: i === index
-                      ? `linear-gradient(90deg, #ff9933, #ffd700)`
-                      : "var(--border)",
+                    background:
+                      i === index
+                        ? `linear-gradient(90deg, #ff9933, #ffd700)`
+                        : "var(--border)",
                   }}
                   whileHover={{ scale: 1.3 }}
                   aria-label={`Go to testimonial ${i + 1}`}
@@ -283,6 +288,59 @@ export default function Testimonials() {
               </motion.button>
             </div>
           </div>
+        </motion.div>
+
+        {/* Google Review CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-10"
+        >
+          <p className="text-sm mb-3" style={{ color: "var(--text-muted)" }}>
+            Jo Braj mein mehsoos kiya… kya wo share karna chahoge? ❤️
+            <br />Rate Your Experience ⭐ It matters!
+          </p>
+
+          <motion.a
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-semibold text-sm text-white shadow-lg transition-all"
+            style={{
+              background: "linear-gradient(135deg, #4285F4, #34A853)",
+              boxShadow: "0 4px 18px rgba(66,133,244,0.45)",
+            }}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9L37.5 9.5C34.1 6.5 29.3 4.5 24 4.5 12.7 4.5 3.5 13.7 3.5 25S12.7 45.5 24 45.5 44.5 36.3 44.5 25c0-1.5-.2-2.9-.5-4.2-.1-.1-.2-.2-.4-.3z"
+                fill="#FFC107"
+              />
+              <path
+                d="M6.3 15.1l6.6 4.8C14.5 16.1 18.9 13 24 13c3.1 0 5.8 1.1 8 2.9L37.5 9.5C34.1 6.5 29.3 4.5 24 4.5c-7.4 0-13.8 4-17.7 10.6z"
+                fill="#FF3D00"
+              />
+              <path
+                d="M24 45.5c5.2 0 9.9-1.9 13.4-5.1l-6.2-5.2C29.2 37 26.7 38 24 38c-5.2 0-9.6-3.3-11.2-7.9L6.1 35c3.8 6.6 10.3 10.5 17.9 10.5z"
+                fill="#4CAF50"
+              />
+              <path
+                d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4-4.1 5.3l6.2 5.2C40 36 44.5 31 44.5 25c0-1.5-.2-2.9-.5-4.2-.1-.1-.2-.2-.4-.3z"
+                fill="#1976D2"
+              />
+            </svg>
+            <Star size={14} className="fill-yellow-300 text-yellow-300" />
+            Braj vibes kaisi lagi? Batao na
+          </motion.a>
         </motion.div>
       </div>
     </section>
