@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
-import razorpay from "@/lib/razorpay";
+import { getRazorpay } from "@/lib/razorpay";
 import { validateBookingInput } from "@/lib/validateBookingInput";
 import { getDepositAmount } from "@/lib/getDepositAmount";
 
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     const deposit = getDepositAmount(Number(pricePerPerson), Number(travelers));
 
     // 3. Create Razorpay order for deposit amount only (in paise)
-    const order = await razorpay.orders.create({
+    const order = await getRazorpay().orders.create({
       amount: deposit.totalDeposit * 100, // paise
       currency: "INR",
       receipt: `bpp_${Date.now()}`,
