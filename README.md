@@ -1,38 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Braj Path Pradarshak
 
-## Getting Started
+**Your Trusted Travel Partner for the Sacred Land of Braj**
 
-First, run the development server:
+Braj Path Pradarshak is a modern travel and tourism website designed to help pilgrims and travelers explore the spiritual heritage of Braj. The platform offers curated tour packages, detailed destination information, and a seamless booking experience for Mathura, Vrindavan, Barsana, Nandgaon, Govardhan, Gokul, and nearby holy places.
+
+## 🌐 Live Website
+
+[https://www.brajpathpradarshak.com/
+](https://www.brajpathpradarshak.com/)
+---
+
+## ✨ Features
+
+- 🛕 Curated pilgrimage tour packages
+- 📍 Destination details for major Braj attractions
+- 📱 Fully responsive design
+- ⚡ Fast loading with Next.js
+- 🎨 Modern and clean UI with Tailwind CSS
+- 💬 WhatsApp integration for instant inquiries
+- 📞 One-click Call & Contact options
+- 🔍 SEO-optimized pages
+- 🚀 Smooth navigation and user-friendly experience
+
+---
+
+## 🛠 Tech Stack
+
+- Next.js
+- React.js
+- Tailwind CSS
+- JavaScript
+- Responsive Design
+
+---
+
+## 📍 Destinations Covered
+
+- Mathura
+- Vrindavan
+- Barsana
+- Nandgaon
+- Govardhan
+- Gokul
+- Radha Kund
+- Kusum Sarovar
+- Prem Mandir
+- Banke Bihari Temple
+- Dwarkadhish Temple
+- ISKCON Temple
+- Shri Krishna Janmabhoomi
+- Kokilavan Dham
+- Raman Reti
+
+---
+
+## 🎯 Project Goals
+
+- Make Braj tourism simple and accessible.
+- Help pilgrims discover spiritual destinations.
+- Provide well-planned tour packages.
+- Deliver a modern and responsive user experience.
+- Improve online visibility through SEO best practices.
+
+---
+
+## 📸 Screenshots
+
+> Add homepage and package screenshots here.
+
+---
+
+## 🚀 Installation
 
 ```bash
+git clone https://github.com/yourusername/braj-path-pradarshak.git
+
+cd braj-path-pradarshak
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Live Demo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://braj-path-pradarsan.vercel.app/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-https://braj-path-pradarsan.vercel.app?_vercel_share=Z69tNOBGB9hrZcBpC6J8varts2IywPlV
+## 👨‍💻 Developed By
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Rahul Singh**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Braj-Path-Pradarsan
+MERN Stack Developer
+
+Portfolio:
+[https://yourportfolio.com
+](https://portfolio-vxax.vercel.app/)
+LinkedIn:
+[https://linkedin.com/in/your-profile
+](https://www.linkedin.com/in/rahul-singh-rajput99/)
+---
+
+## 📄 License
+
+This project is developed for Braj Path Pradarshak. All rights reserved.
+
+© 2026 Braj Path Pradarshak.
